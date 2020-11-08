@@ -197,9 +197,9 @@
         
     <h4>Comments</h4>
     
+    
     <div id="disqus_thread">Unable to load Disqus, please make sure your network can access.</div>
 
-    
     
     
     
@@ -264,19 +264,28 @@
 
 
     
+
+    
     <script>
         function loadComment() {
-            window.disqus_config = function () {
-                this.page.url = 'http://example.com/2020/11/08/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/';
-                this.page.identifier = '2020/11/08/我的第一篇文章/';
+            let e, i;
+            (e = document.createElement("script")).src = 'https://cdn.jsdelivr.net/npm/disqusjs@1.3/dist/disqus.js',
+            document.body.appendChild(e);
+            e.onload = () => {
+                new DisqusJS({
+                    shortname: 'furyton-github-io',
+                    siteName: 'Furyton',
+                    api: '',
+                    apikey: 'cUKhs2oBrr1qiv16lhXOmJss6rQifDKrm7PzWGriYHiulsFGIcwi45fCalbUHxy6',
+                    admin: '',
+                    identifier: '2020/11/08/我的第一篇文章/',
+                    url: 'http://example.com/2020/11/08/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/',
+                    nesting: '2'
+                });
             };
-            (function(){
-                var dsq = document.createElement('script');
-                dsq.type = 'text/javascript';
-                dsq.async = true;
-                dsq.src = '//' + 'furyton-github-io' + '.disqus.com/embed.js';
-                (document.head || document.body).appendChild(dsq);
-            })();
+            (i = document.createElement("link")).rel = "stylesheet",
+            i.href = 'https://cdn.jsdelivr.net/npm/disqusjs@1.3/dist/disqusjs.css',
+            document.head.appendChild(i);
         }
     
         var runningOnBrowser = typeof window !== "undefined";
@@ -298,8 +307,6 @@
         }, 1);
     </script>
 
-
-    
     
     
 

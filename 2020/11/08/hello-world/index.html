@@ -201,9 +201,9 @@
         
     <h4>Comments</h4>
     
+    
     <div id="disqus_thread">Unable to load Disqus, please make sure your network can access.</div>
 
-    
     
     
     
@@ -268,19 +268,28 @@
 
 
     
+
+    
     <script>
         function loadComment() {
-            window.disqus_config = function () {
-                this.page.url = 'http://example.com/2020/11/08/hello-world/';
-                this.page.identifier = '2020/11/08/hello-world/';
+            let e, i;
+            (e = document.createElement("script")).src = 'https://cdn.jsdelivr.net/npm/disqusjs@1.3/dist/disqus.js',
+            document.body.appendChild(e);
+            e.onload = () => {
+                new DisqusJS({
+                    shortname: 'furyton-github-io',
+                    siteName: 'Furyton',
+                    api: '',
+                    apikey: 'cUKhs2oBrr1qiv16lhXOmJss6rQifDKrm7PzWGriYHiulsFGIcwi45fCalbUHxy6',
+                    admin: '',
+                    identifier: '2020/11/08/hello-world/',
+                    url: 'http://example.com/2020/11/08/hello-world/',
+                    nesting: '2'
+                });
             };
-            (function(){
-                var dsq = document.createElement('script');
-                dsq.type = 'text/javascript';
-                dsq.async = true;
-                dsq.src = '//' + 'furyton-github-io' + '.disqus.com/embed.js';
-                (document.head || document.body).appendChild(dsq);
-            })();
+            (i = document.createElement("link")).rel = "stylesheet",
+            i.href = 'https://cdn.jsdelivr.net/npm/disqusjs@1.3/dist/disqusjs.css',
+            document.head.appendChild(i);
         }
     
         var runningOnBrowser = typeof window !== "undefined";
@@ -302,8 +311,6 @@
         }, 1);
     </script>
 
-
-    
     
     
 
