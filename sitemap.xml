@@ -9,14 +9,14 @@
   </url>
   
   <url>
-    <loc>http://example.com/about/index.html</loc>
+    <loc>http://example.com/categories/index.html</loc>
     
     <lastmod>2020-11-08</lastmod>
     
   </url>
   
   <url>
-    <loc>http://example.com/category/index.html</loc>
+    <loc>http://example.com/about/index.html</loc>
     
     <lastmod>2020-11-08</lastmod>
     
@@ -67,7 +67,14 @@
   </url>
   
   <url>
-    <loc>http://example.com/tags/Machine-Learning-NLP/</loc>
+    <loc>http://example.com/tags/Machine-Learning/</loc>
+    <lastmod>2020-11-08</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/tags/NLP/</loc>
     <lastmod>2020-11-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -83,14 +90,21 @@
   </url>
   
   <url>
-    <loc>http://example.com/categories/%E5%AE%9E%E9%AA%8C%E5%AE%A4/</loc>
+    <loc>http://example.com/categories/Machine-Learning/</loc>
     <lastmod>2020-11-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/categories/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</loc>
+    <loc>http://example.com/categories/Lab/</loc>
+    <lastmod>2020-11-08</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/categories/Lab/Basic/</loc>
     <lastmod>2020-11-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
