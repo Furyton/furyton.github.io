@@ -198,12 +198,12 @@
     <h4>Comments</h4>
     
     
-    <div id="disqus_thread">Unable to load Disqus, please make sure your network can access.</div>
+    
+    
+    
+    
+    <div id="gitment-container"></div>
 
-    
-    
-    
-    
     
     
     
@@ -266,25 +266,33 @@
     
 
     
+    
+    
+
+    
+    
+    
+    
+    
     <script>
         function loadComment() {
             let e, i;
-            (e = document.createElement("script")).src = 'https://cdn.jsdelivr.net/npm/disqusjs@1.3/dist/disqus.js',
+            (e = document.createElement("script")).src = 'https://imsun.github.io/gitment/dist/gitment.browser.js',
             document.body.appendChild(e);
             e.onload = () => {
-                new DisqusJS({
-                    shortname: 'furyton-github-io',
-                    siteName: 'Furyton',
-                    api: '',
-                    apikey: 'cUKhs2oBrr1qiv16lhXOmJss6rQifDKrm7PzWGriYHiulsFGIcwi45fCalbUHxy6',
-                    admin: '',
-                    identifier: '2020/11/08/我的第一篇文章/',
-                    url: 'http://example.com/2020/11/08/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/',
-                    nesting: '2'
-                });
+                var gitment = new Gitment({
+                    id: window.location.pathname,
+                    owner: 'Furyton',
+                    repo: 'Furyton.github.io',
+                    oauth: {
+                        client_id: 'e19938e1069c9b591c00',
+                        client_secret: 'f476a45c039b13483e51951b021f0868ad142ea5',
+                    },
+                })
+                gitment.render('gitment-container')
             };
             (i = document.createElement("link")).rel = "stylesheet",
-            i.href = 'https://cdn.jsdelivr.net/npm/disqusjs@1.3/dist/disqusjs.css',
+            i.href = 'https://imsun.github.io/gitment/style/default.css',
             document.head.appendChild(i);
         }
     
@@ -307,14 +315,6 @@
         }, 1);
     </script>
 
-    
-    
-
-    
-    
-    
-    
-    
     
     
     
