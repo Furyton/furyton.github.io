@@ -31,16 +31,16 @@
 
     <!-- OpenGraph -->
  
-    <meta name="description" content="Transformer 模型学习笔记论文地址Attention Is All You Need提出的特点 RNN无法并行地去处理一个序列, 因为每个hidden state $h_i$都是依赖于上一个hidden state  $h_{i-1}$以及input. 所以就要一个step接一个step的去循环, 对于很长的序列训练起来就很耗时. Transformer 模型利用Attention机制去">
+    <meta name="description" content="Transformer 模型学习笔记论文地址Attention Is All You NeedNice Blog for illustrating Transformer Modelseq2seq with attention提出的特点 RNN无法并行地去处理一个序列, 因为每个hidden state $h_i$都是依赖于上一个hidden state  $h_{i-1}$以及input. 所以">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Transformer模型学习笔记">
 <meta property="og:url" content="http://example.com/2020/11/09/Transformer%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Furyton">
-<meta property="og:description" content="Transformer 模型学习笔记论文地址Attention Is All You Need提出的特点 RNN无法并行地去处理一个序列, 因为每个hidden state $h_i$都是依赖于上一个hidden state  $h_{i-1}$以及input. 所以就要一个step接一个step的去循环, 对于很长的序列训练起来就很耗时. Transformer 模型利用Attention机制去">
+<meta property="og:description" content="Transformer 模型学习笔记论文地址Attention Is All You NeedNice Blog for illustrating Transformer Modelseq2seq with attention提出的特点 RNN无法并行地去处理一个序列, 因为每个hidden state $h_i$都是依赖于上一个hidden state  $h_{i-1}$以及input. 所以">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/upload_image/transformer_model_arch.png">
 <meta property="article:published_time" content="2020-11-08T17:22:25.000Z">
-<meta property="article:modified_time" content="2020-11-08T17:46:42.873Z">
+<meta property="article:modified_time" content="2020-11-09T17:38:04.842Z">
 <meta property="article:author" content="Wu Shiguang">
 <meta property="article:tag" content="Machine Learning">
 <meta property="article:tag" content="NLP">
@@ -160,17 +160,27 @@
 <article class="post content-card">
     <div class="post__header"></div>
     <div class="post__content">
-        <h1 id="Transformer-模型学习笔记"><a href="#Transformer-模型学习笔记" class="headerlink" title="Transformer 模型学习笔记"></a>Transformer 模型学习笔记</h1><h6 id="论文地址Attention-Is-All-You-Need"><a href="#论文地址Attention-Is-All-You-Need" class="headerlink" title="论文地址Attention Is All You Need"></a>论文地址<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1706.03762.pdf">Attention Is All You Need</a></h6><h4 id="提出的特点"><a href="#提出的特点" class="headerlink" title="提出的特点"></a>提出的特点</h4><ul>
+        <h1 id="Transformer-模型学习笔记"><a href="#Transformer-模型学习笔记" class="headerlink" title="Transformer 模型学习笔记"></a>Transformer 模型学习笔记</h1><h6 id="论文地址Attention-Is-All-You-Need"><a href="#论文地址Attention-Is-All-You-Need" class="headerlink" title="论文地址Attention Is All You Need"></a>论文地址<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1706.03762.pdf">Attention Is All You Need</a></h6><h6 id="Nice-Blog-for-illustrating-Transformer-Model"><a href="#Nice-Blog-for-illustrating-Transformer-Model" class="headerlink" title="Nice Blog for illustrating Transformer Model"></a><a target="_blank" rel="noopener" href="http://jalammar.github.io/illustrated-transformer/">Nice Blog for illustrating Transformer Model</a></h6><h6 id="seq2seq-with-attention"><a href="#seq2seq-with-attention" class="headerlink" title="seq2seq with attention"></a><a target="_blank" rel="noopener" href="https://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention/">seq2seq with attention</a></h6><h4 id="提出的特点"><a href="#提出的特点" class="headerlink" title="提出的特点"></a>提出的特点</h4><ul>
 <li>RNN无法并行地去处理一个序列, 因为每个hidden state $h_i$都是依赖于上一个hidden state  $h_{i-1}$以及input. 所以就要一个step接一个step的去循环, 对于很长的序列训练起来就很耗时. Transformer 模型<strong>利用Attention机制</strong>去捕获全局的input与output之间的依赖性, 实质上就是将整条序列看作一个input向量, 也就<strong>避免</strong>了循环神经网络中的”<strong>循环</strong>“. 实质上算是对RNN循环过程的一个展开吧.</li>
 <li><strong>完全使用Attention机制</strong>, 没有使用序列对齐的循环(sequence-aligned recurrence)或者卷积层</li>
 </ul>
-<h4 id="模型架构"><a href="#模型架构" class="headerlink" title="模型架构"></a>模型架构</h4><p><img src="/upload_image/transformer_model_arch.png" alt="transformer model architecture"  style="zoom:50%;"/> to be continue….</p>
+<h4 id="背景知识"><a href="#背景知识" class="headerlink" title="背景知识"></a>背景知识</h4><h5 id="Self-attention的优势"><a href="#Self-attention的优势" class="headerlink" title="Self attention的优势"></a>Self attention的优势</h5><ul>
+<li>Gated RNNs 虽然在结构上能够记录前 $n - 1$ 个token的信息, 但实际上, 随着序列变长, 最早的token信息会变得很少, 这就会失去他的准确性, 这在翻译任务中就显得非常要命, 例如, 在English-to-French的翻译里, output的第一个词大概率是依赖于input开始的部分, 这样很可能会得到很差的结果. 而transformer模型似乎是靠着更大的存储和算力来强行将前 $n$ 个token利用attention融合起来. 这样看来, 似乎是对症下药, 实验上也得到了很好的结果.</li>
+<li>而具体的self attention会在模型架构中介绍</li>
+</ul>
+<h5 id="Word-Embedding"><a href="#Word-Embedding" class="headerlink" title="Word Embedding"></a>Word Embedding</h5><h6 id="Blog-for-introducing-Word2Vec"><a href="#Blog-for-introducing-Word2Vec" class="headerlink" title="Blog for introducing Word2Vec"></a><a target="_blank" rel="noopener" href="https://medium.com/deeper-learning/glossary-of-deep-learning-word-embedding-f90c3cec34ca">Blog for introducing Word2Vec</a></h6><ul>
+<li>TODO 学习Word2Vec</li>
+</ul>
+<h4 id="模型架构"><a href="#模型架构" class="headerlink" title="模型架构"></a>模型架构</h4><div align=center><img src="\upload_image\transformer_model_arch.png" alt="transformer_model architecture" style="zoom:50%;"/></div>
+
+<p>在上面的架构图中包含encoder以及decoder的结构<br>transformer model完成的翻译任务实际上还是encoder-decoder的一个结构, </p>
+<p>TODO (与seq2seq with attention 有很多重合的部分, 找出核心的不同, 理解output(shift)为啥能作为init decoder input, 和怎么mask)</p>
 
     </div>
      
     <div class="post-footer__meta">
     <p>
-        updated at 2020-11-09
+        updated at 2020-11-10
     </p>
 </div> 
     <div class="post-meta__cats">
@@ -192,6 +202,20 @@
 
     <div class="nav">
         <div class="nav__prev">
+            
+                <a href="/2020/11/09/%E5%A4%9A%E8%BE%B9%E5%BD%A2%E7%9A%84%E6%89%AB%E6%8F%8F%E8%BD%AC%E6%8D%A2%E4%B8%8E%E5%8C%BA%E5%9F%9F%E5%A1%AB%E5%85%85%E7%AE%97%E6%B3%95/" class="nav__link">
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
+                    </div>
+                    <div>
+                        <div class="nav__label">
+                            Previous Post
+                        </div>
+                        <div class="nav__title">
+                            多边形的扫描转换与区域填充算法
+                        </div>
+                    </div>
+                </a>
             
         </div>
         <div class="nav__next">
