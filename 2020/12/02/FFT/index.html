@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    <link rel="shortcut icon" type='image/x-icon' href="/favicon.ico">
+
+
+    <!-- meta -->
+
+
+<title>FFT | Furyton</title>
+
+
+    <meta name="keywords" content="Basic">
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="note : 本文仅简要地介绍FFT以及它的简单应用, 并不会过多的进行数学推导 Background首先我们回忆一下傅里叶级数. 实数上的情形对于一个函数$f(x)$, 我们现在关注它在$[-\pi,\pi]$ 这个区间上的表现.  它能够写成(在一定条件下)$$f(x) &#x3D; \frac{a_0}{2} + \sum_{k&#x3D;1}^{\infty} a_kcos(kx)+b_ksin(kx)$$这">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FFT">
+<meta property="og:url" content="http://example.com/2020/12/02/FFT/index.html">
+<meta property="og:site_name" content="Furyton">
+<meta property="og:description" content="note : 本文仅简要地介绍FFT以及它的简单应用, 并不会过多的进行数学推导 Background首先我们回忆一下傅里叶级数. 实数上的情形对于一个函数$f(x)$, 我们现在关注它在$[-\pi,\pi]$ 这个区间上的表现.  它能够写成(在一定条件下)$$f(x) &#x3D; \frac{a_0}{2} + \sum_{k&#x3D;1}^{\infty} a_kcos(kx)+b_ksin(kx)$$这">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-12-02T14:50:35.000Z">
+<meta property="article:modified_time" content="2020-12-02T16:12:39.403Z">
+<meta property="article:author" content="Wu Shiguang">
+<meta property="article:tag" content="Basic">
+<meta name="twitter:card" content="summary_large_image">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/default.css" media="none" onload="if(getComputedStyle(document.documentElement).getPropertyValue('--color-mode').indexOf('dark')===-1)this.media='all'">
+        
+    
+
+    
+    
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+    <body>
+        <div id="app">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">BLOG of Furyton</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">Main</a>
+                
+                    <a href="/tags/" class="navbar-menu button">Tags</a>
+                
+                    <a href="/archives/" class="navbar-menu button">Archives</a>
+                
+                    <a href="/categories/" class="navbar-menu button">Categories</a>
+                
+                    <a href="/about/" class="navbar-menu button">About</a>
+                
+            </div>
+        
+        
+        
+    <a href="/search/" id="btn-search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
+    </a>
+
+
+        
+        
+
+        
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">Main</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">Tags</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">Archives</a>
+                
+                    <a href="/categories/" class="dropdown-menu button">Categories</a>
+                
+                    <a href="/about/" class="dropdown-menu button">About</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        FFT
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2020/12/" class="post-meta__date button">
+    2020-12-02
+</a>
+        
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+
+<article class="post content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <p>note : 本文仅简要地介绍FFT以及它的简单应用, 并不会过多的进行数学推导</p>
+<h2 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h2><p>首先我们回忆一下傅里叶级数.</p>
+<h5 id="实数上的情形"><a href="#实数上的情形" class="headerlink" title="实数上的情形"></a>实数上的情形</h5><p>对于一个函数$f(x)$, 我们现在关注它在$[-\pi,\pi]$ 这个区间上的表现. </p>
+<p>它能够写成(在一定条件下)<br>$$<br>f(x) = \frac{a_0}{2} + \sum_{k=1}^{\infty} a_kcos(kx)+b_ksin(kx)<br>$$<br>这里<br>$$<br>a_k = \frac{1}{\pi}\int_{-\pi}^{\pi} f(x)cos(kx)dx \<br>b_k = \frac{1}{\pi}\int_{-\pi}^{\pi} f(x)sin(kx)dx<br>$$<br>虽然这里我们考虑的是在区间$[-\pi,\pi]$ 上, 但现在 $f$ 现在在整个$\textbf{R}$ 具有了周期性, 周期是$2\pi$. </p>
+<p>另一方面, $f(x)$ 要满足”平方可积”, 详细来说, 所有平方可积的函数构成一个线性空间. 更进一步的有关希尔伯特空间等泛函分析的内容. </p>
+<p>那这个线性空间自然具有一个无限维的基. 在傅里叶级数中, 选择的基是<br>$$<br>\left { 1, cos(x), sin(x), cos(2x), sin(2x), \dots\right }<br>$$<br>在确定内积<br>$$<br>\left \langle f,g\right \rangle = \int_{-\pi}^{\pi}f(x)\overline{g(x)}dx<br>$$<br>后,这组由 $cos(kx),sin(kx)\dots$ 构成的基成为了一组正交基. 当然你可以选择规范化, 去除以每个的范数. </p>
+<h5 id="复数上的情形"><a href="#复数上的情形" class="headerlink" title="复数上的情形"></a>复数上的情形</h5><p>把实数上的情形推广到复数上, 这里是说$f(x)$ 现在是复数函数, (x依然是实数). </p>
+<p>我们有了更一般一点的傅里叶级数<br>$$<br>f(x) = \sum_{k=-\infty}^{+\infty} c_k e^{ikx}<br>$$<br>这里<br>$$<br>c_k = \left \langle f(x), e^{ikx} \right\rangle = \int_{-\pi}^{\pi} f(x)e^{-ikx}dx<br>$$<br>(注: Euler公式 $e^{ix}=cos(x) + i sin(x) ,\quad i=\sqrt{-1}$)</p>
+<p>仍然是用许多的$cos(kx), sin(kx)$去表达$f(x)$, 只不过变成了复数. </p>
+<p>前面一直讲的是$f(x)$在$[-\pi,\pi]$上的一些事情, 实际上这并不是唯一的. </p>
+<p>在$[-L,L]$上,有<br>$$<br>f(x) = \sum_{k=-\infty}^{\infty}c_ke^{2\pi kx/L}<br>$$</p>
+<p>记<br>$$<br>\psi_k(x)=e^{2\pi kx/L}<br>$$</p>
+<p>有<br>$$<br>c_k = \left \langle f(x), \psi_k(x) \right\rangle = \int_{-L}^{L} f(x)e^{-2\pi kx/L}dx<br>$$</p>
+<p>这里观察这个级数, 它实际是在将$f(x)$ 分解成一系列$e^{ikx}$ 的线性组合. 或者说一系列$cos(kx), sin(kx)$ 的结合. 这里面$k$ 蕴含着不同的正弦函数的频率. </p>
+
+    </div>
+     
+    <div class="post-footer__meta">
+    <p>
+        updated at 2020-12-03
+    </p>
+</div> 
+    <div class="post-meta__cats">
+    
+    
+        <a href="/tags/Basic/" class="post-tags__link button"># Basic</a>
+    
+</div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2020/11/11/Word2Vec/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            Next Post
+                        </div>
+                        <div class="nav__title">
+                            Word2Vec
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+    
+
+
+    
+     
+ 
+
+
+        
+            
+                <p class="footer-copyright">
+                    Copyright ©
+                    2020
+                        <a href="/">
+                            Furyton
+                        </a>
+                </p>
+                
+                    
+                                        <!-- <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p> -->
+</footer>
+        </div>
+         
+
+ 
+
+ 
+
+ 
+
+  
+
+
+
+ 
+
+
+    
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>
