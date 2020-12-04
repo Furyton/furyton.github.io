@@ -38,15 +38,15 @@
 <meta property="og:site_name" content="Furyton">
 <meta property="og:description" content="note : 本文仅简要地介绍FFT以及它的简单应用, 并不会过多的进行数学推导 Background首先我们回忆一下傅里叶级数. 实数上的情形对于一个函数$f(x)$, 我们现在关注它在$[-\pi,\pi]$ 这个区间上的表现.  它能够写成(在一定条件下)$$f(x) &#x3D; \frac{a_0}{2} + \sum_{k&#x3D;1}^{\infty} a_kcos(kx)+b_ksin(kx)$$这">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2020/12/02/FFT/%5Cupload_image%5Coriginal.jpg">
-<meta property="og:image" content="http://example.com/2020/12/02/FFT/%5Cupload_image%5Cafter_FFT.jpg">
-<meta property="og:image" content="http://example.com/2020/12/02/FFT/%5Cupload_image%5Cafter.jpg">
+<meta property="og:image" content="http://example.com/2020/12/02/FFT/upload_image%5Coriginal.jpg">
+<meta property="og:image" content="http://example.com/2020/12/02/FFT/upload_image%5Cafter_FFT.jpg">
+<meta property="og:image" content="http://example.com/2020/12/02/FFT/upload_image%5Cafter.jpg">
 <meta property="article:published_time" content="2020-12-02T14:50:35.000Z">
-<meta property="article:modified_time" content="2020-12-04T14:54:25.728Z">
+<meta property="article:modified_time" content="2020-12-04T15:00:08.145Z">
 <meta property="article:author" content="Wu Shiguang">
 <meta property="article:tag" content="Basic">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/2020/12/02/FFT/%5Cupload_image%5Coriginal.jpg">
+<meta name="twitter:image" content="http://example.com/2020/12/02/FFT/upload_image%5Coriginal.jpg">
 
 
     
@@ -183,13 +183,13 @@
 <p>$\psi_k = \left[<br> \begin{matrix}<br>   1 \<br>   e^{2\pi ik/n} \<br>   (e^{2\pi ik/n})^2 \<br>   \vdots \<br>   (e^{2\pi ik/n})^{n-1}<br>  \end{matrix}<br>  \right]$ 可以看作是不同频率的函数, 那么$\hat f_k$ 便可以看作是对应的$\psi_k$ 所占的大小.</p>
 <p>首先举个简单的例子去直观的理解这个变换.</p>
 <p>我们在函数$f(x)=cos(2\pi \times 50 x)+cos(2\pi \times 75x)$ 上进行采样, 同时我们加上一个随机的噪声,范围是$[-4,4]$</p>
-<p><img src="%5Cupload_image%5Coriginal.jpg"></p>
+<p><img src="upload_image%5Coriginal.jpg"></p>
 <p>黑色的是原图像, 蓝色的部分是加入噪声后的图象. 当然这里的数据都是离散的, 只不过画图的时候被连在了一起.看上去像连续的.</p>
 <p>现在我们得到了采样后的一个$f(x)$的向量, $[f_0,f_1,f_2,…,f_{n-1}]$ </p>
 <p>经过DFT后, 我们能得到一个$\hat f$ 向量, 由于是复数, 这里只展示向量中每个复数的模长的平方. 可以看作是一种能量. </p>
-<p><img src="%5Cupload_image%5Cafter_FFT.jpg"></p>
+<p><img src="upload_image%5Cafter_FFT.jpg"></p>
 <p>下面的图是经过DFT后的样子, 明显可以看到, 里面有两个非常高的点. 对应着原始的没有加入噪声的$cos(2\pi \times 50 x)$ 和 $cos(2\pi \times 75x)$ , 如果我们设置一个阈值, 小于100的置位0, 这样就能去除噪声.</p>
-<p><img src="%5Cupload_image%5Cafter.jpg"></p>
+<p><img src="upload_image%5Cafter.jpg"></p>
 <p>中间的图就是对$\hat f$ 惊醒过滤之后再经过DFT的逆操作的得到的图象, 会发现它完全去除了噪声, 还原了最初的$f(x)$ .</p>
 <h3 id="计算DFT"><a href="#计算DFT" class="headerlink" title="计算DFT"></a>计算DFT</h3><p>下面的问题是如何去计算DFT呢,<br>$$<br>\hat f_k=\sum_{j=0}^{n-1}f_j e^{-2\pi ijk/n}\<br>f_k = \frac{1}{n}\sum_{j=0}^{n-1}\hat f_k e^{2\pi ijk/n}<br>$$<br>容易看到这实质上是一个矩阵乘法.</p>
 <p>记 $\omega_n = e^{-2\pi i/n}$<br>$$<br>\hat f=\left [ \begin{matrix}<br>\hat f_0 \ \hat f_1 \ \hat f_2 \ \vdots \ \hat f_{n-1}<br>\end{matrix} \right ]<br>=<br>\left [ \begin{matrix}<br>1 &amp; 1 &amp; 1 &amp; 1 &amp; \dots &amp; 1 \<br>1 &amp; \omega_n &amp; \omega_n^{2} &amp; \omega_n^{3} &amp; \dots &amp; \omega_n^{n-1}\<br>1 &amp; \omega_n^{2} &amp; \omega_n^{4} &amp; \omega_n^{6} &amp; \dots &amp; \omega_n^{2(n-1)} \<br>  &amp;   &amp; \vdots &amp;  &amp; \dots &amp;\vdots \<br>1 &amp; \omega_n^{n-1} &amp; \omega_n^{2(n-1)} &amp; \omega_n^{3(n-1)} &amp; \dots &amp; \omega_n^{(n-1)(n-1)}<br>\end{matrix}\right]<br>\left[ \begin{matrix}<br>f_0 \  f_1 \  f_2 \ \vdots \  f_{n-1}<br>\end{matrix}\right]<br>$$<br>记这个矩阵为$\mathcal{F_n}$ , 或者称为DFT矩阵.</p>
