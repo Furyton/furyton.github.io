@@ -346,7 +346,11 @@
                     }
                 },
                 tex: {
-                    inlineMath: {'[+]': [['$', '$']]},
+                    inlineMath: {
+                        '[+]': [
+                            ['$', '$']
+                        ]
+                    },
                     tags: 'ams'
                 },
                 options: {
@@ -357,8 +361,16 @@
                                 const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
                                 const text = document.createTextNode('');
                                 node.parentNode.replaceChild(text, node);
-                                math.start = {node: text, delim: '', n: 0};
-                                math.end = {node: text, delim: '', n: 0};
+                                math.start = {
+                                    node: text,
+                                    delim: '',
+                                    n: 0
+                                };
+                                math.end = {
+                                    node: text,
+                                    delim: '',
+                                    n: 0
+                                };
                                 doc.math.push(math);
                             });
                         }, '', false],
@@ -373,7 +385,7 @@
                     }
                 }
             };
-            (function () {
+            (function() {
                 var script = document.createElement('script');
                 script.src = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js";
                 script.defer = true;
@@ -385,7 +397,7 @@
             MathJax.typeset();
         }
     </script>
- 
+     
 
  
 
