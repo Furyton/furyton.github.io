@@ -4,7 +4,7 @@
   <url>
     <loc>http://example.com/2020/12/02/FFT/</loc>
     
-    <lastmod>2020-12-04</lastmod>
+    <lastmod>2020-12-05</lastmod>
     
   </url>
   
@@ -74,7 +74,7 @@
 
   <url>
     <loc>http://example.com/</loc>
-    <lastmod>2020-12-04</lastmod>
+    <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -82,42 +82,42 @@
   
   <url>
     <loc>http://example.com/tags/test/</loc>
-    <lastmod>2020-12-04</lastmod>
+    <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://example.com/tags/Machine-Learning/</loc>
-    <lastmod>2020-12-04</lastmod>
+    <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://example.com/tags/NLP/</loc>
-    <lastmod>2020-12-04</lastmod>
+    <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://example.com/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/</loc>
-    <lastmod>2020-12-04</lastmod>
+    <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://example.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
-    <lastmod>2020-12-04</lastmod>
+    <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://example.com/tags/Basic/</loc>
-    <lastmod>2020-12-04</lastmod>
+    <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -126,35 +126,35 @@
   
   <url>
     <loc>http://example.com/categories/test/</loc>
-    <lastmod>2020-12-04</lastmod>
+    <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://example.com/categories/Machine-Learning/</loc>
-    <lastmod>2020-12-04</lastmod>
+    <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://example.com/categories/Lab/</loc>
-    <lastmod>2020-12-04</lastmod>
+    <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://example.com/categories/Lab/Basic/</loc>
-    <lastmod>2020-12-04</lastmod>
+    <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://example.com/categories/Assign/</loc>
-    <lastmod>2020-12-04</lastmod>
+    <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>

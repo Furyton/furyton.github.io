@@ -42,7 +42,7 @@
 <meta property="og:image" content="http://example.com/upload_image/after_FFT.jpg">
 <meta property="og:image" content="http://example.com/upload_image/after.jpg">
 <meta property="article:published_time" content="2020-12-02T14:50:35.000Z">
-<meta property="article:modified_time" content="2020-12-04T15:56:05.184Z">
+<meta property="article:modified_time" content="2020-12-05T08:54:25.519Z">
 <meta property="article:author" content="Wu Shiguang">
 <meta property="article:tag" content="Basic">
 <meta name="twitter:card" content="summary_large_image">
@@ -231,7 +231,7 @@ f_k = \frac{1}{n}\sum_{j=0}^{n-1}\hat f_k e^{2\pi ijk/n}
 <p>下面的图是经过DFT后的样子, 明显可以看到, 里面有两个非常高的点. 对应着原始的没有加入噪声的$cos(2\pi \times 50 x)$ 和 $cos(2\pi \times 75x)$ , 如果我们设置一个阈值, 小于100的置位0, 这样就能去除噪声.</p>
 <div align=center><img src="\upload_image\after.jpg" alt="filtered" /></div>
 
-<p>中间的图就是对$\hat f$ 惊醒过滤之后再经过DFT的逆操作的得到的图象, 会发现它完全去除了噪声, 还原了最初的$f(x)$ .</p>
+<p>中间的图就是对$\hat f$ 进行过滤之后再经过DFT的逆操作的得到的图象, 会发现它完全去除了噪声, 还原了最初的$f(x)$ .</p>
 <h3 id="计算DFT"><a href="#计算DFT" class="headerlink" title="计算DFT"></a>计算DFT</h3><p>下面的问题是如何去计算DFT呢,</p>
 <script type="math/tex; mode=display">
 \begin{align*}
@@ -276,7 +276,7 @@ p(x) =& a_0+a_1x+a_2x^2+\dots+a_{n-1}x^{n-1} \\\\
          =& \sum_{j=0}^{n/2-1}f_{2j}(\omega_{n/2}^k)^{j} +\omega_n^k\sum_{j=0}^{n/2-1}f_{2j+1}(\omega_{n/2}^k)^{j}\\\\
          =& E + \omega_n^k O
 \end{align*}</script><p>$E$ 和 $O$ 便是我们的两个相同的子问题.</p>
-<p>如果我们分别利用$f<em>{even}$ 和 $f</em>{odd}$ 计算出了$E$ 和 $O$ 我们便能很快的根据上面的式子计算出所有的$\hat f_k$ </p>
+<p>如果我们分别利用 $f<em>{even}$ 和 $f</em>{odd}$ 计算出了$E$ 和 $O$ 我们便能很快的根据上面的式子计算出所有的$\hat f_k$ </p>
 <p>不仅如此，我们可以利用</p>
 <script type="math/tex; mode=display">
 \omega_n^{k+n/2} = -\omega_n^{k}</script><p>进一步的简化.</p>
@@ -317,7 +317,7 @@ f_{even}\\\\\\\\f_{odd}
      
     <div class="post-footer__meta">
     <p>
-        updated at 2020-12-04
+        updated at 2020-12-05
     </p>
 </div> 
     <div class="post-meta__cats">
