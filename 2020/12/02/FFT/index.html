@@ -42,7 +42,7 @@
 <meta property="og:image" content="http://example.com/upload_image/after_FFT.jpg">
 <meta property="og:image" content="http://example.com/upload_image/after.jpg">
 <meta property="article:published_time" content="2020-12-02T14:50:35.000Z">
-<meta property="article:modified_time" content="2020-12-05T08:54:25.519Z">
+<meta property="article:modified_time" content="2020-12-07T16:04:33.830Z">
 <meta property="article:author" content="Wu Shiguang">
 <meta property="article:tag" content="Basic">
 <meta name="twitter:card" content="summary_large_image">
@@ -254,7 +254,7 @@ f_k = \frac{1}{n}\sum_{j=0}^{n-1}\hat f_k e^{2\pi ijk/n}
 \left[ \begin{matrix}
 f_0 \\\\  f_1 \\\\  f_2 \\\\ \vdots \\\\  f_{n-1}
 \end{matrix}\right]</script><p>记这个矩阵为$\mathcal{F_n}$ , 或者称为DFT矩阵.</p>
-<p>实质上$\mathcal{F}$ 乘上它的共轭转置  $\mathcal{F^{-1}}$ 等于 $nE_n$， 所以它的逆矩阵是很好求的，DFT的逆变换也很容易得出.</p>
+<p>实质上$\mathcal{F}$ 乘上它的共轭转置  $\mathcal{F^*}$ 等于 $nE_n$， 所以它的逆矩阵是很好求的，DFT的逆变换也很容易得出.</p>
 <p>如果直接去求这个矩阵，复杂度是比较高的$O(n^2)$ </p>
 <p>但是如果考虑到 $\omega_n$ 的特殊的性质，便能得到非常高效的$O(nlogn)$ 的算法，也就是FFT</p>
 <h3 id="FFT"><a href="#FFT" class="headerlink" title="FFT"></a>FFT</h3><p>FFT就是一种计算DFT的高效的算法，它最初是由高斯提出.</p>
@@ -317,7 +317,7 @@ f_{even}\\\\\\\\f_{odd}
      
     <div class="post-footer__meta">
     <p>
-        updated at 2020-12-05
+        updated at 2020-12-08
     </p>
 </div> 
     <div class="post-meta__cats">

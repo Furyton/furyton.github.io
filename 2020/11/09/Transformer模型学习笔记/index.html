@@ -31,26 +31,26 @@
 
     <!-- OpenGraph -->
  
-    <meta name="description" content="Transformer 模型学习笔记论文地址Attention Is All You NeedNice Blog for illustrating Transformer Modelseq2seq with attention提出的特点 RNN无法并行地去处理一个序列, 因为每个hidden state $h_i$都是依赖于上一个hidden state  $h_{i-1}$以及input. 所以">
+    <meta name="description" content="Transformer 模型学习笔记论文地址Attention Is All You NeedNice Blog for illustrating Transformer Modelseq2seq with attention提出的特点 RNN无法并行地去处理一个序列, 因为每个hidden state $hi$都是依赖于上一个hidden state  $h{i-1}$以及input. 所以就要">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Transformer模型学习笔记">
 <meta property="og:url" content="http://example.com/2020/11/09/Transformer%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Furyton">
-<meta property="og:description" content="Transformer 模型学习笔记论文地址Attention Is All You NeedNice Blog for illustrating Transformer Modelseq2seq with attention提出的特点 RNN无法并行地去处理一个序列, 因为每个hidden state $h_i$都是依赖于上一个hidden state  $h_{i-1}$以及input. 所以">
+<meta property="og:description" content="Transformer 模型学习笔记论文地址Attention Is All You NeedNice Blog for illustrating Transformer Modelseq2seq with attention提出的特点 RNN无法并行地去处理一个序列, 因为每个hidden state $hi$都是依赖于上一个hidden state  $h{i-1}$以及input. 所以就要">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2020/11/09/Transformer%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/upload_image/attention_with_one_head.png">
-<meta property="og:image" content="http://example.com/2020/11/09/Transformer%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/upload_image/attention_with_one_head_2.png">
-<meta property="og:image" content="http://example.com/2020/11/09/Transformer%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/upload_image/multihead.png">
-<meta property="og:image" content="http://example.com/2020/11/09/Transformer%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/upload_image/attention_with_multihead.png">
-<meta property="og:image" content="http://example.com/2020/11/09/Transformer%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/upload_image/attention_with_3heads.png">
-<meta property="og:image" content="http://example.com/2020/11/09/Transformer%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/upload_image/transformer_model_arch.png">
+<meta property="og:image" content="http://example.com/upload_image/attention_with_one_head.png">
+<meta property="og:image" content="http://example.com/upload_image/attention_with_one_head_2.png">
+<meta property="og:image" content="http://example.com/upload_image/multihead.png">
+<meta property="og:image" content="http://example.com/upload_image/attention_with_multihead.png">
+<meta property="og:image" content="http://example.com/upload_image/attention_with_3heads.png">
+<meta property="og:image" content="http://example.com/upload_image/transformer_model_arch.png">
 <meta property="article:published_time" content="2020-11-08T17:22:25.000Z">
-<meta property="article:modified_time" content="2020-11-16T15:35:55.115Z">
+<meta property="article:modified_time" content="2020-12-07T16:03:37.447Z">
 <meta property="article:author" content="Wu Shiguang">
 <meta property="article:tag" content="Machine Learning">
 <meta property="article:tag" content="NLP">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/2020/11/09/Transformer%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/upload_image/attention_with_one_head.png">
+<meta name="twitter:image" content="http://example.com/upload_image/attention_with_one_head.png">
 
 
     
@@ -166,7 +166,7 @@
     <div class="post__header"></div>
     <div class="post__content">
         <h1 id="Transformer-模型学习笔记"><a href="#Transformer-模型学习笔记" class="headerlink" title="Transformer 模型学习笔记"></a>Transformer 模型学习笔记</h1><h6 id="论文地址Attention-Is-All-You-Need"><a href="#论文地址Attention-Is-All-You-Need" class="headerlink" title="论文地址Attention Is All You Need"></a>论文地址<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1706.03762.pdf">Attention Is All You Need</a></h6><h6 id="Nice-Blog-for-illustrating-Transformer-Model"><a href="#Nice-Blog-for-illustrating-Transformer-Model" class="headerlink" title="Nice Blog for illustrating Transformer Model"></a><a target="_blank" rel="noopener" href="http://jalammar.github.io/illustrated-transformer/">Nice Blog for illustrating Transformer Model</a></h6><h6 id="seq2seq-with-attention"><a href="#seq2seq-with-attention" class="headerlink" title="seq2seq with attention"></a><a target="_blank" rel="noopener" href="https://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention/">seq2seq with attention</a></h6><h4 id="提出的特点"><a href="#提出的特点" class="headerlink" title="提出的特点"></a>提出的特点</h4><ul>
-<li>RNN无法并行地去处理一个序列, 因为每个hidden state $h_i$都是依赖于上一个hidden state  $h_{i-1}$以及input. 所以就要一个step接一个step的去循环, 对于很长的序列训练起来就很耗时. Transformer 模型<strong>利用Attention机制</strong>去捕获全局的input与output之间的依赖性, 实质上就是将整条序列看作一个input向量, 也就<strong>避免</strong>了循环神经网络中的”<strong>循环</strong>“. 实质上算是对RNN循环过程的一个展开吧.</li>
+<li>RNN无法并行地去处理一个序列, 因为每个hidden state $h<em>i$都是依赖于上一个hidden state  $h</em>{i-1}$以及input. 所以就要一个step接一个step的去循环, 对于很长的序列训练起来就很耗时. Transformer 模型<strong>利用Attention机制</strong>去捕获全局的input与output之间的依赖性, 实质上就是将整条序列看作一个input向量, 也就<strong>避免</strong>了循环神经网络中的”<strong>循环</strong>“. 实质上算是对RNN循环过程的一个展开吧.</li>
 <li><strong>完全使用Attention机制</strong>, 没有使用序列对齐的循环(sequence-aligned recurrence)或者卷积层</li>
 </ul>
 <h4 id="背景知识"><a href="#背景知识" class="headerlink" title="背景知识"></a>背景知识</h4><h5 id="Self-attention的优势"><a href="#Self-attention的优势" class="headerlink" title="Self attention的优势"></a>Self attention的优势</h5><ul>
@@ -185,13 +185,22 @@
 </li>
 </ul>
 <h5 id="Attention"><a href="#Attention" class="headerlink" title="Attention"></a>Attention</h5><p>虽然字面上讲的attention, 似乎是个很熟悉的概念, 但实际在具体的实现上是另一种更加抽象的机制.</p>
-<p>一般来讲,这个问题是想输入两种序列, $S= {S_1, S_2, S_3 \dots S_n }$ 以及 $T ={T_1, T_2, T_3 \dots T_m }$ 我想输出$T$ 对于$S$ 的attention, 具体的可以说就是一个function, $Attention_{S_i}(T_j),\quad i= 1,2\dots n$</p>
-<p>,然后有<br>$$<br>\sum_{j} Attention_{S_i}(T_j)=1, \quad i = 1,2,\dots n<br>$$<br>就可以,值越大就越重要. 那么整个T对于 $S_i$ 的representation就是 $T_{s_i} = \sum_{j} Attention_{S_i} (T_j)\times Value(T_j)$ 这么一个加权平均</p>
+<p>一般来讲,这个问题是想输入两种序列, $S= {S<em>1, S_2, S_3 \dots S_n }$ 以及 $T ={T_1, T_2, T_3 \dots T_m }$ 我想输出$T$ 对于$S$ 的attention, 具体的可以说就是一个function, $Attention</em>{S_i}(T_j),\quad i= 1,2\dots n$</p>
+<p>,然后有</p>
+<script type="math/tex; mode=display">
+\sum_{j} Attention_{S_i}(T_j)=1, \quad i = 1,2,\dots n</script><p>就可以,值越大就越重要. 那么整个T对于 $S<em>i$ 的representation就是 $T</em>{s<em>i} = \sum</em>{j} Attention_{S_i} (T_j)\times Value(T_j)$ 这么一个加权平均</p>
 <p>这里的元素就是一些embedding, 一些向量. </p>
-<p>Attention的求法类似于一种查询. 每个 $S_i$ 都会对应一个query向量 $\boldsymbol{q_i}$ 每个 $T_i$ 又对应一个键值 $\boldsymbol{k_i}$ 以供”查询”, 查到的结果就是两个向量的点积 $a_{ij} = \boldsymbol{q_i} \cdot \boldsymbol{k_j}$ , (假设这里的两个向量的维数都是 $d_k$ ).</p>
-<p>最后的Attention就是再加上一个softmax<br>$$<br>Attention_{S_i}(T_j)  = \frac{e^{\boldsymbol{q_i} \cdot \boldsymbol{k_j}^T}}{\sum_j e^{\boldsymbol{q_i} \cdot \boldsymbol{k_j}^T}}<br>$$</p>
-<p>每个 $T_j$ 又会对应一个Value向量 $v_j$ (维度可以和前面两个向量不同, 记为$d_v$)用以获得representation. 最后得到的就是<br>$$<br>Representation_{for\ S_i} = softmax(\boldsymbol{q}_{1\times d_k}\cdot \boldsymbol K_{m \times d_k}^T) \boldsymbol V_{m\times d_k}<br>$$<br>进一步可以获得 $T$ 对 $S$ 的表示<br>$$<br>softmax(\boldsymbol{Q}_{n\times d_k}\cdot \boldsymbol K_{m \times d_k}^T) \boldsymbol V_{m\times d_v}<br>$$<br>为了”having more stable gradients” , 在$\boldsymbol{Q}\cdot \boldsymbol K^T$这里还要除以一个因子, 默认是 $\sqrt{d_k}$ ,</p>
-<p>然后又变成了<br>$$<br>softmax(\frac{\boldsymbol{Q}\cdot \boldsymbol K^T}{\sqrt{d_k}}) \boldsymbol V<br>$$<br>有人要问了, 你说的这些query,key和value向量都咋求呢. </p>
+<p>Attention的求法类似于一种查询. 每个 $S<em>i$ 都会对应一个query向量 $\boldsymbol{q_i}$ 每个 $T_i$ 又对应一个键值 $\boldsymbol{k_i}$ 以供”查询”, 查到的结果就是两个向量的点积 $a</em>{ij} = \boldsymbol{q_i} \cdot \boldsymbol{k_j}$ , (假设这里的两个向量的维数都是 $d_k$ ).</p>
+<p>最后的Attention就是再加上一个softmax</p>
+<script type="math/tex; mode=display">
+Attention_{S_i}(T_j)  = \frac{e^{\boldsymbol{q_i} \cdot \boldsymbol{k_j}^T}}{\sum_j e^{\boldsymbol{q_i} \cdot \boldsymbol{k_j}^T}}</script><p>每个 $T_j$ 又会对应一个Value向量 $v_j$ (维度可以和前面两个向量不同, 记为$d_v$)用以获得representation. 最后得到的就是</p>
+<script type="math/tex; mode=display">
+Representation_{for\ S_i} = softmax(\boldsymbol{q}_{1\times d_k}\cdot \boldsymbol K_{m \times d_k}^T) \boldsymbol V_{m\times d_k}</script><p>进一步可以获得 $T$ 对 $S$ 的表示 </p>
+<script type="math/tex; mode=display">
+softmax(\boldsymbol{Q}_{n\times d_k}\cdot \boldsymbol K_{m \times d_k}^T) \boldsymbol V_{m\times d_v}</script><p>为了”having more stable gradients” , 在$\boldsymbol{Q}\cdot \boldsymbol K^T$这里还要除以一个因子, 默认是 $\sqrt{d_k}$ ,</p>
+<p>然后又变成了</p>
+<script type="math/tex; mode=display">
+softmax(\frac{\boldsymbol{Q}\cdot \boldsymbol K^T}{\sqrt{d_k}}) \boldsymbol V</script><p>有人要问了, 你说的这些query,key和value向量都咋求呢. </p>
 <ul>
 <li>用三个线性映射(矩阵) $W^Q,W^K,W^V$</li>
 </ul>
@@ -203,23 +212,23 @@
 <p><a target="_blank" rel="noopener" href="https://colab.research.google.com/github/tensorflow/tensor2tensor/blob/master/tensor2tensor/notebooks/hello_t2t.ipynb">tensor2tensor</a>上有个示例, 演示的就是attention</p>
 <p>一个比较经典的例子 翻译句子 The animal didn’t cross the street because it was too tired</p>
 <p>这里的 it 应该代指 The animal, 但是对模型来说, 他也可能是说the street.</p>
-<div align=center><img src=".\upload_image\attention_with_one_head.png" alt="attention with one head" style="zoom:50%;" /></div>
+<div align=center><img src="\upload_image\attention_with_one_head.png" alt="attention with one head" style="zoom:50%;" /></div>
 
 <p>这里可以看到, 模型确实被it的代指给弄晕了,但还好animal处的颜色比street的地方要深,说明他的权值要大</p>
-<div align=center><img src=".\upload_image\attention_with_one_head_2.png" alt="attention with one head(2)" style="zoom: 50%;" /></div>
+<div align=center><img src="\upload_image\attention_with_one_head_2.png" alt="attention with one head(2)" style="zoom: 50%;" /></div>
 
 <p>但并不是所有的attention都能学到对应的部分.</p>
-<p>解决办法就是, 我们用多个attention去拼接成最终想要的representation. 具体的, 我们得到的value向量不是 $d_v$ 维的吗, 假设我们有 $h$ 个head, 那么就把向量分为$h$ 个维度为 $d_v / h$ 的向量, 每个用各自的线性映射得到 $h$ 组不同的 $\boldsymbol{Q,, K,, V_{m \times (d_v/h)}}$ 去求各自的value(attention结构图片来自<a target="_blank" rel="noopener" href="http://jalammar.github.io/illustrated-transformer/">这个blog</a>)</p>
-<div align=center><img src=".\upload_image\multihead.png" alt="multihead attention" style="zoom:50%;" /></div>
+<p>解决办法就是, 我们用多个attention去拼接成最终想要的representation. 具体的, 我们得到的value向量不是 $d<em>v$ 维的吗, 假设我们有 $h$ 个head, 那么就把向量分为$h$ 个维度为 $d_v / h$ 的向量, 每个用各自的线性映射得到 $h$ 组不同的 $\boldsymbol{Q,\, K,\, V</em>{m \times (d_v/h)}}$ 去求各自的value(attention结构图片来自<a target="_blank" rel="noopener" href="http://jalammar.github.io/illustrated-transformer/">这个blog</a>)</p>
+<div align=center><img src="\upload_image\multihead.png" alt="multihead attention" style="zoom:50%;" /></div>
 
 <p>最后一般还会再乘上一个矩阵 $W^O$,来得到最后的输出</p>
-<div align=center><img src=".\upload_image\attention_with_multihead.png" alt="attention with multihead" style="zoom:50%;" /></div>
+<div align=center><img src="\upload_image\attention_with_multihead.png" alt="attention with multihead" style="zoom:50%;" /></div>
 
 <p>用上了多个head, 我们就能同时去关注不同的区域, 获得更准确的表述</p>
-<div align=center><img src=".\upload_image\attention_with_3heads.png" alt="attention with 3 heads" style="zoom:50%;" /></div>
+<div align=center><img src="\upload_image\attention_with_3heads.png" alt="attention with 3 heads" style="zoom:50%;" /></div>
 
 <h4 id="整体架构"><a href="#整体架构" class="headerlink" title="整体架构"></a>整体架构</h4><p>前面花了较长篇幅讲了Attention机制, 这里再看下它是如何被用在Transformer中的</p>
-<div align=center><img src=".\upload_image\transformer_model_arch.png" alt="transformer_model architecture" style="zoom:50%;"/></div>
+<div align=center><img src="\upload_image\transformer_model_arch.png" alt="transformer_model architecture" style="zoom:50%;"/></div>
 
 <p>在上面的架构图中包含encoder以及decoder的结构(结构图来自原论文)</p>
 <p>左边是encoder, 他的特点就是直接将整条序列直接放进网络层中.</p>
@@ -229,7 +238,7 @@
      
     <div class="post-footer__meta">
     <p>
-        updated at 2020-11-16
+        updated at 2020-12-08
     </p>
 </div> 
     <div class="post-meta__cats">
