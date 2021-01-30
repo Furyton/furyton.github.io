@@ -42,15 +42,15 @@
 
                     <!-- OpenGraph -->
  
-    <meta name="description" content="参考书 Boyd Convex Optimization  基本的概念和性质什么是凸函数$f:\bold{R}^n \rightarrow \bold{R}, \quad \bold{dom} f$ 是个凸集，$0 \leq \theta \leq 1$  f(\theta x + (1-\theta)y)\leq \theta f(x) + (1-\theta)f(y)严格凸就是不会取到等号 凹">
+    <meta name="description" content="参考书 Boyd Convex Optimization 基本的概念和性质 什么是凸函数 \(f:\mathbf {R}^n \rightarrow \mathbf {R}, \quad \mathbf {dom} f\) 是个凸集，\(0 \leq \theta \leq 1\) \[ f(\theta x + (1-\theta)y)\leq \theta f(x) + (1-\the">
 <meta property="og:type" content="article">
 <meta property="og:title" content="凸函数">
 <meta property="og:url" content="http://example.com/2021/01/27/%E5%87%B8%E5%87%BD%E6%95%B0/index.html">
 <meta property="og:site_name" content="Furyton">
-<meta property="og:description" content="参考书 Boyd Convex Optimization  基本的概念和性质什么是凸函数$f:\bold{R}^n \rightarrow \bold{R}, \quad \bold{dom} f$ 是个凸集，$0 \leq \theta \leq 1$  f(\theta x + (1-\theta)y)\leq \theta f(x) + (1-\theta)f(y)严格凸就是不会取到等号 凹">
+<meta property="og:description" content="参考书 Boyd Convex Optimization 基本的概念和性质 什么是凸函数 \(f:\mathbf {R}^n \rightarrow \mathbf {R}, \quad \mathbf {dom} f\) 是个凸集，\(0 \leq \theta \leq 1\) \[ f(\theta x + (1-\theta)y)\leq \theta f(x) + (1-\the">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-01-27T13:25:10.000Z">
-<meta property="article:modified_time" content="2021-01-30T13:56:46.304Z">
+<meta property="article:modified_time" content="2021-01-30T15:19:36.314Z">
 <meta property="article:author" content="Wu Shiguang">
 <meta property="article:tag" content="Basic">
 <meta property="article:tag" content="Study">
@@ -168,10 +168,12 @@
 <article class="post content-card">
     <div class="post__header"></div>
     <div class="post__content">
-        <p>参考书 Boyd <em>Convex Optimization</em> </p>
-<h2 id="基本的概念和性质"><a href="#基本的概念和性质" class="headerlink" title="基本的概念和性质"></a>基本的概念和性质</h2><h3 id="什么是凸函数"><a href="#什么是凸函数" class="headerlink" title="什么是凸函数"></a>什么是凸函数</h3><p>$f:\bold{R}^n \rightarrow \bold{R}, \quad \bold{dom} f$ 是个凸集，$0 \leq \theta \leq 1$</p>
-<script type="math/tex; mode=display">
-f(\theta x + (1-\theta)y)\leq \theta f(x) + (1-\theta)f(y)</script><p>严格凸就是不会取到等号</p>
+        <p>参考书 Boyd <em>Convex Optimization</em></p>
+<h2 id="基本的概念和性质">基本的概念和性质</h2>
+<h3 id="什么是凸函数">什么是凸函数</h3>
+<p><span class="math inline">\(f:\mathbf {R}^n \rightarrow \mathbf {R}, \quad \mathbf {dom} f\)</span> 是个凸集，<span class="math inline">\(0 \leq \theta \leq 1\)</span> <span class="math display">\[
+f(\theta x + (1-\theta)y)\leq \theta f(x) + (1-\theta)f(y)
+\]</span> 严格凸就是不会取到等号</p>
 <p>凹函数就是凸函数加个负号</p>
 <p>仿射函数是比较特殊的，它既是凸函数又是凹函数，反过来也成立。相当于凹函数和凸函数的一个共有的临界的函数。</p>
 <p>未完待续。。。</p>
@@ -272,7 +274,69 @@ f(\theta x + (1-\theta)y)\leq \theta f(x) + (1-\theta)f(y)</script><p>严格凸�
 
  
 
- 
+
+    <script>
+        if (typeof MathJax === 'undefined') {
+            window.MathJax = {
+                loader: {
+                    source: {
+                        '[tex]/amsCd': '[tex]/amscd',
+                        '[tex]/AMScd': '[tex]/amscd'
+                    }
+                },
+                tex: {
+                    inlineMath: {
+                        '[+]': [
+                            ['$', '$']
+                        ]
+                    },
+                    tags: 'ams'
+                },
+                options: {
+                    renderActions: {
+                        findScript: [10, doc => {
+                            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                                const display = !!node.type.match(/; *mode=display/);
+                                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                                const text = document.createTextNode('');
+                                node.parentNode.replaceChild(text, node);
+                                math.start = {
+                                    node: text,
+                                    delim: '',
+                                    n: 0
+                                };
+                                math.end = {
+                                    node: text,
+                                    delim: '',
+                                    n: 0
+                                };
+                                doc.math.push(math);
+                            });
+                        }, '', false],
+                        insertedScript: [200, () => {
+                            document.querySelectorAll('mjx-container').forEach(node => {
+                                let target = node.parentNode;
+                                if (target.nodeName.toLowerCase() === 'li') {
+                                    target.parentNode.classList.add('has-jax');
+                                }
+                            });
+                        }, '', false]
+                    }
+                }
+            };
+            (function() {
+                var script = document.createElement('script');
+                script.src = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js";
+                script.defer = true;
+                document.head.appendChild(script);
+            })();
+        } else {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+        }
+    </script>
+     
 
  
 
