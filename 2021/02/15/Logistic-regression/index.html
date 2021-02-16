@@ -50,7 +50,7 @@
 <meta property="og:description" content="Logistic Regression 简介：一种简单的统计分类方法，因为使用了Logistic函数得名。称作回归(Regression)的原因是，这个模型实质是在做函数的拟合问题。 Logistic Function \[ f(x)&#x3D;\frac{1}{1+e^{-x}} \] 介于\(0\) ~ \(1\)之间 二分类的Logistic模型 \[ P(Y&#x3D;1|x)&#x3D;\frac{">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-02-15T07:56:55.000Z">
-<meta property="article:modified_time" content="2021-02-15T14:53:25.075Z">
+<meta property="article:modified_time" content="2021-02-16T10:53:33.302Z">
 <meta property="article:author" content="Wu Shiguang">
 <meta property="article:tag" content="Basic">
 <meta property="article:tag" content="Study">
@@ -202,12 +202,67 @@ P(Y=k|x)=\frac{exp(w_k \cdot x)}{1+\sum_{k=1}^{K-1}exp(w_k\cdot x)},\quad k=1,2,
 \]</span> <span class="math display">\[
 P(Y=K|x)=\frac{1}{1+\sum_{k=1}^{K-1}exp(w_k\cdot x)}
 \]</span></p>
+<h1 id="最大熵模型">最大熵模型</h1>
+<p>简介：最大熵模型是根据最大熵原理得到的，简单说，在所有可能的概率模型中，熵最大的模型是最好的，因为它保留了最大的不确定性，所有不确定的部分都是接近"等可能的"，减小了对不确定因素的偏见。</p>
+<h2 id="模型的定义">模型的定义</h2>
+<p>利用最大熵原理，获得一个简单的分类模型。这里所求的模型是条件概率模型。根据给定的训练集，可以获得联合分布<span class="math inline">\(P(X,Y)\)</span>的经验分布，以及边缘分布<span class="math inline">\(P(X)\)</span>的经验分布，分别记为<span class="math inline">\(\tilde{P}(X,Y)\)</span> 和 <span class="math inline">\(\tilde{P}(X)\)</span> 。</p>
+<h3 id="约束">约束</h3>
+<p>约束就是分类问题中确定的条件，也就是输入与输出之间一些已知的事实。</p>
+<p>约束用特征函数表示。 <span class="math display">\[
+f(x,y)=\left\{\begin{matrix}
+1 ,&amp; x和y满足某一事实\\ 
+0 ,&amp; 否则
+\end{matrix}\right.
+\]</span> 如果模型能够学习到数据中的信息，那么就可以<strong>假设</strong>特征函数关于经验分布和模型分布的期望是相等的。</p>
+<p>关于经验分布的期望 <span class="math display">\[
+E_{\tilde{P}}(f)=\sum_{x,y}\tilde{P}(x,y)f(x,y)
+\]</span> 关于模型的条件分布的期望 <span class="math display">\[
+E_P(f)=\sum_{x,y}\tilde{P}(x)P(y|x)f(x,y)
+\]</span> 两者应当相等 ，即 <span class="math display">\[
+E_{\tilde{P}}(f)=E_P(f)
+\]</span></p>
+<p>另外，特征函数也可不只一个。</p>
+<h3 id="熵">熵</h3>
+<p>条件熵 <span class="math display">\[
+H(P)=-\sum_{x,y}\tilde{P}(x)P(y\,|\,x)\,logP(y\,|\,x)
+\]</span></p>
+<h3 id="模型学习">模型学习</h3>
+<p>约束最优化问题 <span class="math display">\[
+\max_{P}\quad H(P)=-\sum_{x,y}\tilde{P}(x)P(y\,|\,x)\,logP(y\,|\,x)
+\]</span></p>
+<p><span class="math display">\[
+s.t.\quad E_{\tilde{P}}(f_i)=E_P(f_i),\ i=1,2,...,n
+\]</span></p>
+<p><span class="math display">\[
+\sum_yP(y\,|\,x)=1
+\]</span></p>
+<p>根据拉格朗日乘子法， <span class="math display">\[
+L(P,w)=-H(P)+w_0\left ( 1-\sum_yP(y\,|\,x)\right)+\sum_{i=1}^{n}w_i(E_{\tilde{P}}(f_i)-E_P(f_i))
+\]</span> 问题转化为 <span class="math display">\[
+\min_{P}\max_{w}L(P,w)
+\]</span> 对偶问题 <span class="math display">\[
+\max_{w}\min_{P}L(P,w)
+\]</span> 因为<span class="math inline">\(L(P,w)\)</span> 是 P 的凸函数，故原始问题和对偶问题是等价的。(但其实两者等价的条件我还没学。。。我不懂，我不会)</p>
+<p>通过对偶问题里面的极小化，可以获得一个含参的分布 <span class="math display">\[
+P_w(y\,|\,x)=\frac{1}{Z_w(x)}exp\left ( \sum_{i=1}^{n}w_if_i(x,y) \right )
+\]</span></p>
+<p><span class="math display">\[
+Z_w(x)=\sum_yexp\left ( \sum_{i=1}^{n}w_if_i(x,y) \right )
+\]</span></p>
+<p>其中<span class="math inline">\(Z_w(x)\)</span> 是正规化因子，<span class="math inline">\(w_i\)</span>是参数、权值。</p>
+<p>下面在进一步去求外面的极大化就可以把参数求出来。</p>
+<p>PS：最后一步的极大化其实等价于直接利用得到的含参的分布去做极大似然估计。</p>
+<h3 id="模型求解">模型求解</h3>
+<ul>
+<li>有一个改进的迭代尺度法，计算每次参数 <span class="math inline">\(w\)</span> 的增量 <span class="math inline">\(\delta\)</span> , 关注<span class="math inline">\(L(w+\delta)-L(w)\)</span> , 经过放缩确定下界， 为了得到更大的该变量。放缩是因为，原式太复杂。</li>
+<li>拟牛顿法</li>
+</ul>
 
     </div>
      
     <div class="post-footer__meta">
     <p>
-        updated at 2021-02-15
+        updated at 2021-02-16
     </p>
 </div> 
     <div class="post-meta__cats">
