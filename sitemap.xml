@@ -2,91 +2,91 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://example.com/2021/03/04/VHDL%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/</loc>
+    <loc>http://github.com/2021/03/04/VHDL%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/</loc>
     
     <lastmod>2021-03-05</lastmod>
     
   </url>
   
   <url>
-    <loc>http://example.com/2021/01/27/%E5%87%B8%E5%87%BD%E6%95%B0/</loc>
+    <loc>http://github.com/2021/01/27/%E5%87%B8%E5%87%BD%E6%95%B0/</loc>
     
     <lastmod>2021-02-27</lastmod>
     
   </url>
   
   <url>
-    <loc>http://example.com/2021/02/15/Logistic-regression/</loc>
+    <loc>http://github.com/2021/02/15/Logistic-regression/</loc>
     
     <lastmod>2021-02-16</lastmod>
     
   </url>
   
   <url>
-    <loc>http://example.com/2020/11/09/Transformer%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
+    <loc>http://github.com/2020/11/09/Transformer%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
     
     <lastmod>2021-01-28</lastmod>
     
   </url>
   
   <url>
-    <loc>http://example.com/2020/12/02/FFT/</loc>
+    <loc>http://github.com/2020/12/02/FFT/</loc>
     
     <lastmod>2020-12-07</lastmod>
     
   </url>
   
   <url>
-    <loc>http://example.com/2020/11/09/%E5%A4%9A%E8%BE%B9%E5%BD%A2%E7%9A%84%E6%89%AB%E6%8F%8F%E8%BD%AC%E6%8D%A2%E4%B8%8E%E5%8C%BA%E5%9F%9F%E5%A1%AB%E5%85%85%E7%AE%97%E6%B3%95/</loc>
+    <loc>http://github.com/2020/11/09/%E5%A4%9A%E8%BE%B9%E5%BD%A2%E7%9A%84%E6%89%AB%E6%8F%8F%E8%BD%AC%E6%8D%A2%E4%B8%8E%E5%8C%BA%E5%9F%9F%E5%A1%AB%E5%85%85%E7%AE%97%E6%B3%95/</loc>
     
     <lastmod>2020-11-11</lastmod>
     
   </url>
   
   <url>
-    <loc>http://example.com/2020/11/11/Word2Vec/</loc>
+    <loc>http://github.com/2020/11/11/Word2Vec/</loc>
     
     <lastmod>2020-11-10</lastmod>
     
   </url>
   
   <url>
-    <loc>http://example.com/categories/index.html</loc>
+    <loc>http://github.com/categories/index.html</loc>
     
     <lastmod>2020-11-08</lastmod>
     
   </url>
   
   <url>
-    <loc>http://example.com/about/index.html</loc>
+    <loc>http://github.com/about/index.html</loc>
     
     <lastmod>2020-11-08</lastmod>
     
   </url>
   
   <url>
-    <loc>http://example.com/tags/index.html</loc>
+    <loc>http://github.com/tags/index.html</loc>
     
     <lastmod>2020-11-08</lastmod>
     
   </url>
   
   <url>
-    <loc>http://example.com/search/index.html</loc>
+    <loc>http://github.com/search/index.html</loc>
     
     <lastmod>2020-11-08</lastmod>
     
   </url>
   
   <url>
-    <loc>http://example.com/2020/11/08/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</loc>
+    <loc>http://github.com/2020/11/08/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</loc>
     
     <lastmod>2020-11-08</lastmod>
     
   </url>
   
   <url>
-    <loc>http://example.com/2020/11/08/hello-world/</loc>
+    <loc>http://github.com/2020/11/08/hello-world/</loc>
     
     <lastmod>2020-11-08</lastmod>
     
@@ -94,7 +94,7 @@
   
 
   <url>
-    <loc>http://example.com/</loc>
+    <loc>http://github.com/</loc>
     <lastmod>2021-03-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
@@ -102,63 +102,63 @@
 
   
   <url>
-    <loc>http://example.com/tags/test/</loc>
+    <loc>http://github.com/tags/test/</loc>
     <lastmod>2021-03-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/tags/Machine-Learning/</loc>
+    <loc>http://github.com/tags/Machine-Learning/</loc>
     <lastmod>2021-03-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/tags/NLP/</loc>
+    <loc>http://github.com/tags/NLP/</loc>
     <lastmod>2021-03-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/</loc>
+    <loc>http://github.com/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/</loc>
     <lastmod>2021-03-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
+    <loc>http://github.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
     <lastmod>2021-03-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/tags/Basic/</loc>
+    <loc>http://github.com/tags/Basic/</loc>
     <lastmod>2021-03-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/tags/Study/</loc>
+    <loc>http://github.com/tags/Study/</loc>
     <lastmod>2021-03-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/tags/VHDL/</loc>
+    <loc>http://github.com/tags/VHDL/</loc>
     <lastmod>2021-03-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/tags/note/</loc>
+    <loc>http://github.com/tags/note/</loc>
     <lastmod>2021-03-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -167,56 +167,56 @@
 
   
   <url>
-    <loc>http://example.com/categories/test/</loc>
+    <loc>http://github.com/categories/test/</loc>
     <lastmod>2021-03-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/categories/Machine-Learning/</loc>
+    <loc>http://github.com/categories/Machine-Learning/</loc>
     <lastmod>2021-03-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/categories/Lab/</loc>
+    <loc>http://github.com/categories/Lab/</loc>
     <lastmod>2021-03-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/categories/Lab/Basic/</loc>
+    <loc>http://github.com/categories/Lab/Basic/</loc>
     <lastmod>2021-03-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/categories/Assign/</loc>
+    <loc>http://github.com/categories/Assign/</loc>
     <lastmod>2021-03-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/categories/Optimization/</loc>
+    <loc>http://github.com/categories/Optimization/</loc>
     <lastmod>2021-03-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/categories/Programming-language/</loc>
+    <loc>http://github.com/categories/Programming-language/</loc>
     <lastmod>2021-03-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/categories/Computer-Organization/</loc>
+    <loc>http://github.com/categories/Computer-Organization/</loc>
     <lastmod>2021-03-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
