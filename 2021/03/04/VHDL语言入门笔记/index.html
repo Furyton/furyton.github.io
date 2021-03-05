@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+            <!-- 渲染优化 -->
+
+            <meta name="google-site-verification" content="MdF6kGSidGrvCpYUMmpTpg9Rxq2vUoK5C8kA5T9VxoQ" />
+            <meta name="baidu-site-verification" content="code-X7mm2HpCMG" />
+            <meta name="renderer" content="webkit">
+            <meta name="force-rendering" content="webkit">
+            <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+            <meta name="HandheldFriendly" content="True">
+            <meta name="apple-mobile-web-app-capable" content="yes">
+            <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+            <!--icon-->
+
+    <link rel="shortcut icon" type='image/x-icon' href="/favicon.ico">
+
+
+                <!-- meta -->
+<!-- <meta name="baidu-site-verification" content="code-X7mm2HpCMG" /> -->
+
+
+    <title>
+        
+            VHDL语言入门笔记 |
+                
+                    Furyton
+    </title>
+
+    
+        <meta name="keywords" content="VHDL, note">
+        <!-- <meta name="baidu-site-verification" content="code-X7mm2HpCMG" /> -->
+        
+
+            
+
+                    <!-- OpenGraph -->
+ 
+    <meta name="description" content="at the beginning the differences between VHDL and software programming languages Serial vs. Parallel concurrency: ​ VHDL: all the codes are execute at the same time. &#x3D;&gt; parallel language notes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VHDL语言入门笔记">
+<meta property="og:url" content="http://example.com/2021/03/04/VHDL%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Furyton">
+<meta property="og:description" content="at the beginning the differences between VHDL and software programming languages Serial vs. Parallel concurrency: ​ VHDL: all the codes are execute at the same time. &#x3D;&gt; parallel language notes">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-03-04T05:47:19.000Z">
+<meta property="article:modified_time" content="2021-03-05T11:09:52.475Z">
+<meta property="article:author" content="Wu Shiguang">
+<meta property="article:tag" content="VHDL">
+<meta property="article:tag" content="note">
+<meta name="twitter:card" content="summary_large_image">
+
+
+                        
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+
+
+                            
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/default.css" media="none" onload="if(getComputedStyle(document.documentElement).getPropertyValue('--color-mode').indexOf('dark')===-1)this.media='all'">
+        
+    
+
+                                
+                                    
+
+                                         
+
+                                            <!-- custom head -->
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+    <body>
+        <div id="app">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">BLOG of Furyton</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">Main</a>
+                
+                    <a href="/tags/" class="navbar-menu button">Tags</a>
+                
+                    <a href="/archives/" class="navbar-menu button">Archives</a>
+                
+                    <a href="/categories/" class="navbar-menu button">Categories</a>
+                
+                    <a href="/about/" class="navbar-menu button">About</a>
+                
+            </div>
+        
+        
+        
+    <a href="/search/" id="btn-search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
+    </a>
+
+
+        
+        
+
+        
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">Main</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">Tags</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">Archives</a>
+                
+                    <a href="/categories/" class="dropdown-menu button">Categories</a>
+                
+                    <a href="/about/" class="dropdown-menu button">About</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        VHDL语言入门笔记
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2021/03/" class="post-meta__date button">
+    2021-03-04
+</a>
+        
+    <span class="separate-dot"></span><a href="/categories/Programming-language/" class="button">Programming language</a>
+
+    <span class="separate-dot"></span><a href="/categories/Computer-Organization/" class="button">Computer Organization</a>
+
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+
+<article class="post content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <h1 id="at-the-beginning">at the beginning</h1>
+<p>the differences between VHDL and software programming languages</p>
+<h2 id="serial-vs.-parallel">Serial vs. Parallel</h2>
+<p><strong>concurrency</strong>:</p>
+<p>​ VHDL: all the codes are execute at the <strong>same</strong> time. =&gt; parallel language</p>
+<h1 id="notes">notes</h1>
+<h3 id="basic">basic</h3>
+<h4 id="library">library</h4>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">library</span> ieee;</span><br><span class="line"><span class="keyword">use</span> ieee.std_logic_1164.<span class="keyword">all</span>;</span><br><span class="line">....</span><br></pre></td></tr></table></figure>
+<h4 id="entity">entity</h4>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">entity</span> name_same_with_filename <span class="keyword">is</span></span><br><span class="line">	<span class="keyword">port</span> ( <span class="comment">-- the ports opened for the users</span></span><br><span class="line">		input_1	: <span class="keyword">in</span> <span class="built_in">std_logic</span>; <span class="comment">-- std_logic have more than states &#x27;1&#x27; and &#x27;0&#x27;</span></span><br><span class="line">        ...</span><br><span class="line">        result	: <span class="keyword">out</span> <span class="built_in">std_logic</span> <span class="comment">-- PortName : &lt;mode&gt; &lt;type&gt;</span></span><br><span class="line">        <span class="comment">-- the last port is not followed by a &#x27;;&#x27;</span></span><br><span class="line">	);</span><br><span class="line"><span class="keyword">end</span> <span class="keyword">entity</span>; <span class="comment">-- remember the &#x27;;&#x27;</span></span><br></pre></td></tr></table></figure>
+<h4 id="architecture">architecture</h4>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">architecture</span> arch_name <span class="keyword">of</span> entity_name <span class="keyword">is</span></span><br><span class="line">    <span class="comment">-- signal declarations(used for internal connections)</span></span><br><span class="line">   	<span class="keyword">signal</span> name	: <span class="built_in">bit</span>;</span><br><span class="line">    <span class="comment">-- constant</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">    <span class="comment">-- behavioral of the system</span></span><br><span class="line"><span class="keyword">end</span> <span class="keyword">architecture</span>;</span><br></pre></td></tr></table></figure>
+<h4 id="a-simple-and_gate-example">a simple and_gate example</h4>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">library</span> ieee;</span><br><span class="line"><span class="keyword">use</span> ieee.std_logic_1164.<span class="keyword">all</span>;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">entity</span> example_and <span class="keyword">is</span></span><br><span class="line">  <span class="keyword">port</span> (</span><br><span class="line">    input_1    : <span class="keyword">in</span>  <span class="built_in">std_logic</span>;</span><br><span class="line">    input_2    : <span class="keyword">in</span>  <span class="built_in">std_logic</span>;</span><br><span class="line">    and_result : <span class="keyword">out</span> <span class="built_in">std_logic</span></span><br><span class="line">    );</span><br><span class="line"><span class="keyword">end</span> example_and;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">architecture</span> rtl <span class="keyword">of</span> example_and <span class="keyword">is</span></span><br><span class="line">  <span class="keyword">signal</span> and_gate : <span class="built_in">std_logic</span>;</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  and_gate   &lt;= input_1 <span class="keyword">and</span> input_2;</span><br><span class="line">  and_result &lt;= and_gate;</span><br><span class="line"><span class="keyword">end</span> rtl;</span><br></pre></td></tr></table></figure>
+<p>saved as example_and.vhd</p>
+<p>to generate a symbol of example_and , then insert it in the diagram file</p>
+<ul>
+<li>File -&gt; create/update -&gt; create symbol files ...</li>
+</ul>
+<h3 id="process">process</h3>
+<p>often used for sequential logic (require a clock to operate)</p>
+<p>not common usage for combinational logic (do not require a clock)</p>
+<h4 id="example-of-flip-flop">example of flip-flop</h4>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">library</span> ieee;</span><br><span class="line"><span class="keyword">use</span> ieee.std_logic_1164.<span class="keyword">all</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">entity</span> test <span class="keyword">is</span></span><br><span class="line">	<span class="keyword">port</span> (</span><br><span class="line">		i_clock : <span class="keyword">in</span> <span class="built_in">std_logic</span>;</span><br><span class="line">		q1, q2, q3, q4 : <span class="keyword">out</span> <span class="built_in">std_logic</span></span><br><span class="line">	);</span><br><span class="line"><span class="keyword">end</span> test;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">architecture</span> rtl <span class="keyword">of</span> test <span class="keyword">is</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">signal</span> test1 : <span class="built_in">std_logic</span> := <span class="string">&#x27;1&#x27;</span>;</span><br><span class="line">	<span class="keyword">signal</span> test2 : <span class="built_in">std_logic</span> := <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">	<span class="keyword">signal</span> test3 : <span class="built_in">std_logic</span> := <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">	<span class="keyword">signal</span> test4 : <span class="built_in">std_logic</span> := <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">		</span><br><span class="line">	flip : <span class="keyword">process</span> (i_clock) <span class="keyword">is</span></span><br><span class="line">	<span class="keyword">begin</span></span><br><span class="line">		<span class="keyword">if</span> rising_edge(i_clock) <span class="keyword">then</span></span><br><span class="line">			test2 &lt;= test1;</span><br><span class="line">			test3 &lt;= test2;</span><br><span class="line">			test4 &lt;= test3;</span><br><span class="line">		<span class="keyword">end</span> <span class="keyword">if</span>;</span><br><span class="line">	<span class="keyword">end</span> <span class="keyword">process</span> flip;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">-- or without a name</span></span><br><span class="line">            </span><br><span class="line">    <span class="comment">-- process (i_clock)</span></span><br><span class="line">	<span class="comment">-- begin</span></span><br><span class="line">	<span class="comment">-- 	if rising_edge(i_clock) then</span></span><br><span class="line">	<span class="comment">-- 		test2 &lt;= test1;</span></span><br><span class="line">	<span class="comment">-- 		test3 &lt;= test2;</span></span><br><span class="line">	<span class="comment">-- 		test4 &lt;= test3;</span></span><br><span class="line">	<span class="comment">-- 	end if;</span></span><br><span class="line">	<span class="comment">-- end process;</span></span><br><span class="line">	</span><br><span class="line">	q1 &lt;= test1;</span><br><span class="line">	q2 &lt;= test2;</span><br><span class="line">	q3 &lt;= test3;</span><br><span class="line">	q4 &lt;= test4;</span><br><span class="line">	</span><br><span class="line"><span class="keyword">end</span> rtl;</span><br></pre></td></tr></table></figure>
+<p>saved as test.vhd</p>
+<h3 id="component">component</h3>
+<p>component 可以将某个完成的组件作为当前系统的一个子系统。需要在architecture内，begin前声明，在begin内具体化一个实例，同时定义好component的port所对应的signal，也就是port map。另外，各种design file都可以引用来作为一个component，Quartus提供了Create VHDL Component Declaration File功能，生成一个.cmp文件，内容是自动生成的对应component声明语句，非常方便。</p>
+<h4 id="example-of-component">example of component</h4>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">library</span> ieee;</span><br><span class="line"><span class="keyword">use</span> ieee.std_logic_1164.<span class="keyword">all</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">entity</span> uPC <span class="keyword">is</span></span><br><span class="line">	<span class="keyword">port</span>(</span><br><span class="line">		LOAD : <span class="keyword">in</span> <span class="built_in">std_logic</span>;</span><br><span class="line">		CPuPC  : <span class="keyword">in</span> <span class="built_in">std_logic</span>;</span><br><span class="line">		E   : <span class="keyword">in</span> <span class="built_in">std_logic</span>;</span><br><span class="line">		CLR  : <span class="keyword">in</span> <span class="built_in">std_logic</span>;</span><br><span class="line">		D    : <span class="keyword">in</span> <span class="built_in">std_logic_vector</span>(<span class="number">15</span> <span class="keyword">downto</span> <span class="number">0</span>);</span><br><span class="line">		Q    : <span class="keyword">out</span> <span class="built_in">std_logic_vector</span>(<span class="number">15</span> <span class="keyword">downto</span> <span class="number">0</span>)</span><br><span class="line">	);</span><br><span class="line"><span class="keyword">end</span> <span class="keyword">entity</span> uPC;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">architecture</span> rtl <span class="keyword">of</span> uPC <span class="keyword">is</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">COMPONENT</span> f74161 <span class="comment">-- f74161是Quartus library所带的74161的bdf文件，实质上在图形界面里使用的是它的一个子部件调用，还有一个p74161，貌似是根据device family来选择两者，具体的细节不太了解。</span></span><br><span class="line">	<span class="keyword">PORT</span> <span class="comment">-- 声明port</span></span><br><span class="line">	(</span><br><span class="line">		CLRN		:	 <span class="keyword">IN</span> <span class="built_in">STD_LOGIC</span>;</span><br><span class="line">		LDN		:	 <span class="keyword">IN</span> <span class="built_in">STD_LOGIC</span>;</span><br><span class="line">		D		:	 <span class="keyword">IN</span> <span class="built_in">STD_LOGIC</span>;</span><br><span class="line">		C		:	 <span class="keyword">IN</span> <span class="built_in">STD_LOGIC</span>;</span><br><span class="line">		B		:	 <span class="keyword">IN</span> <span class="built_in">STD_LOGIC</span>;</span><br><span class="line">		ENP		:	 <span class="keyword">IN</span> <span class="built_in">STD_LOGIC</span>;</span><br><span class="line">		A		:	 <span class="keyword">IN</span> <span class="built_in">STD_LOGIC</span>;</span><br><span class="line">		ENT		:	 <span class="keyword">IN</span> <span class="built_in">STD_LOGIC</span>;</span><br><span class="line">		CLK		:	 <span class="keyword">IN</span> <span class="built_in">STD_LOGIC</span>;</span><br><span class="line">		RCO		:	 <span class="keyword">OUT</span> <span class="built_in">STD_LOGIC</span>;</span><br><span class="line">		QD		:	 <span class="keyword">OUT</span> <span class="built_in">STD_LOGIC</span>;</span><br><span class="line">		QC		:	 <span class="keyword">OUT</span> <span class="built_in">STD_LOGIC</span>;</span><br><span class="line">		QB		:	 <span class="keyword">OUT</span> <span class="built_in">STD_LOGIC</span>;</span><br><span class="line">		QA		:	 <span class="keyword">OUT</span> <span class="built_in">STD_LOGIC</span></span><br><span class="line">	);</span><br><span class="line"><span class="keyword">END</span> <span class="keyword">COMPONENT</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">signal</span> rco_wire : <span class="built_in">std_logic_vector</span>(<span class="number">2</span> <span class="keyword">downto</span> <span class="number">0</span>);</span><br><span class="line">	<span class="keyword">signal</span> useless: <span class="built_in">std_logic</span>; <span class="comment">-- 实例化的时候有一个输出管脚没有用到，但我不太会设置这个空管脚，就直接写了一个没有用到的信号</span></span><br><span class="line">	</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">-- 以下都是f74161的实例化，需要设置port map，里面signal的顺序就是上面声明时port的顺序</span></span><br><span class="line">	counter0 : f74161 <span class="keyword">port</span> <span class="keyword">map</span>(CLR, LOAD, D(<span class="number">3</span>), D(<span class="number">2</span>), D(<span class="number">1</span>), E, D(<span class="number">0</span>), E, CPuPC, rco_wire(<span class="number">0</span>), Q(<span class="number">3</span>), Q(<span class="number">2</span>), Q(<span class="number">1</span>), Q(<span class="number">0</span>));</span><br><span class="line">	counter1 : f74161 <span class="keyword">port</span> <span class="keyword">map</span>(CLR, LOAD, D(<span class="number">7</span>), D(<span class="number">6</span>), D(<span class="number">5</span>), rco_wire(<span class="number">0</span>), D(<span class="number">4</span>), rco_wire(<span class="number">0</span>), CPuPC, rco_wire(<span class="number">1</span>), Q(<span class="number">7</span>), Q(<span class="number">6</span>), Q(<span class="number">5</span>), Q(<span class="number">4</span>));</span><br><span class="line">	counter2 : f74161 <span class="keyword">port</span> <span class="keyword">map</span>(CLR, LOAD, D(<span class="number">11</span>), D(<span class="number">10</span>), D(<span class="number">9</span>), rco_wire(<span class="number">1</span>), D(<span class="number">8</span>), rco_wire(<span class="number">1</span>), CPuPC, rco_wire(<span class="number">2</span>), Q(<span class="number">11</span>), Q(<span class="number">10</span>), Q(<span class="number">9</span>), Q(<span class="number">8</span>));</span><br><span class="line">	counter3 : f74161 <span class="keyword">port</span> <span class="keyword">map</span>(CLR, LOAD, D(<span class="number">15</span>), D(<span class="number">14</span>), D(<span class="number">13</span>), rco_wire(<span class="number">2</span>), D(<span class="number">12</span>), rco_wire(<span class="number">2</span>), CPuPC, useless, Q(<span class="number">15</span>), Q(<span class="number">14</span>), Q(<span class="number">13</span>), Q(<span class="number">12</span>));</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line"><span class="keyword">end</span> rtl;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+    </div>
+     
+    <div class="post-footer__meta">
+    <p>
+        updated at 2021-03-05
+    </p>
+</div> 
+    <div class="post-meta__cats">
+    
+        <a href="/categories/Programming-language/" class="post-cats__link button">Programming language</a>
+    
+        <a href="/categories/Computer-Organization/" class="post-cats__link button">Computer Organization</a>
+    
+    
+        <a href="/tags/VHDL/" class="post-tags__link button"># VHDL</a>
+    
+        <a href="/tags/note/" class="post-tags__link button"># note</a>
+    
+</div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2021/02/15/Logistic-regression/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            Next Post
+                        </div>
+                        <div class="nav__title">
+                            Logistic Regression and Maximum Entropy Model
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+    
+
+
+    
+     
+ 
+
+
+        
+            
+                <p class="footer-copyright">
+                    Copyright ©
+                    2021
+                        <a href="/">
+                            Furyton
+                        </a>
+                </p>
+                
+                    
+                                        <!-- <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p> -->
+</footer>
+        </div>
+         
+
+ 
+
+ 
+
+ 
+
+  
+
+
+
+ 
+
+
+    
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>
