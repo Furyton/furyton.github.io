@@ -6,7 +6,7 @@
   <link href="http://furyton.github.io/atom.xml" rel="self"/>
   
   <link href="http://furyton.github.io/"/>
-  <updated>2021-03-06T05:13:26.692Z</updated>
+  <updated>2021-03-06T15:30:50.849Z</updated>
   <id>http://furyton.github.io/</id>
   
   <author>
@@ -15,6 +15,39 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Combinatorics course note - Turan problem</title>
+    <link href="http://furyton.github.io/2021/03/06/Combinatorics-course-note-Turan-problem/"/>
+    <id>http://furyton.github.io/2021/03/06/Combinatorics-course-note-Turan-problem/</id>
+    <published>2021-03-06T14:17:30.000Z</published>
+    <updated>2021-03-06T15:30:50.849Z</updated>
+    
+    <content type="html"><![CDATA[<p>课程链接 <a href="http://homepages.warwick.ac.uk/staff/H.Liu.9/topic-comb-sdu2021.html" title="Topic in Combinatorics">Course Link</a></p><p>闲来无事听的课，看看自己能坚持多久</p><p>习题解答并不能保证正确性</p><h2 id="turan-problem">Turan Problem</h2><p>就是求解一个数 extremal number of a graph H <span class="math display">\[ex(n,H)=max\{e(G) : |G|=n \, and \, G \;is \; H-free\}\]</span> 在顶点数量限制下，不包含子图H，最大化边的数量</p><p>第一个结果是triangle-free的extremal number (Mantel 1907) <span class="math display">\[e(G)\le ex(n,K_3)= \left \lfloor n^2/4 \right \rfloor\]</span> 最大的图是两边各有 <span class="math inline">\(\left \lfloor n/2 \right \rfloor\)</span> 个点的二分图</p><h3 id="exercise">exercise</h3><ul><li><p>ex1: 选择n个无理数，怎么才能<span class="math inline">\(max\{\#(x_i,x_j):x_i+x_j \in Q\}\)</span></p><p>A：转化成图的问题，两个数和如果是有理数那么就有一条边，否则没有。注意到图中不能有三角形，那么根据上面的定理就解决了。</p></li><li><p>ex2: 证明对于任意一个k个顶点的树 T, <span class="math inline">\(ex(n,T)\le kn\)</span> A: 如果图G有<span class="math inline">\(kn\)</span>个边，那么一定能够找到它的一个子图G'，其最小度数大于等于k。如果子图中有一个点v度数小于k，那么把他去掉，最后的度数为 <span class="math display">\[ \frac{\sum_{i=1}^{|G&#39;|} d(i)-2d(v)}{|G|-1}\ge \frac{2e(G&#39;)}{|G|}\gt k\]</span> , 且这个平均值在一直增加，最终一定可以得到所需的子图。</p><p>T可以表示成一个序列<span class="math inline">\([v_1,v_2,\dots,v_k]\)</span> ，对每个<span class="math inline">\(v_i\)</span> ，只有唯一个点<span class="math inline">\(v_j \in [v_1,\dots,v_{i-1}]\)</span> ，<span class="math inline">\(v_i\)</span>和<span class="math inline">\(v_j\)</span>相连。由此可以构造性的证明，上述得到的子图G'包含所有k顶点的树。</p><h3 id="extremal-structure">extremal structure</h3></li></ul><h4 id="turan">turan</h4><p>r-partite turan graph =&gt; <span class="math inline">\(T_r(n)\)</span> <span class="math display">\[ex(n,K_{r+1})=e(T_r(n))=(1-\frac{1}{r})\frac{n^2}{2}-O(r), \quad r\in N,r\ge2\]</span></p><p>#### stability</p><p>let <span class="math inline">\(\epsilon &gt; 0\)</span>, exists <span class="math inline">\(\delta &gt; 0\)</span>, G be an n-vertex <span class="math inline">\(K_{k+1}\)</span> -free graph, if <span class="math display">\[e(G)\ge ex(n,K_{r+1})-\delta n^2\]</span> then G can be changed to <span class="math inline">\(T_r(n)\)</span> by altering at most <span class="math inline">\(\epsilon n^2\)</span> adjacencies</p><h3 id="motzkin-straus">Motzkin-Straus</h3><p><span class="math display">\[f_G(x)=x^TA_Gx\]</span></p><p><span class="math inline">\(S_n\)</span> 是概率单纯形。</p><p>有<span class="math inline">\(f_G(x)=2e(G_x)\)</span> ,<span class="math inline">\(e(G_x)\)</span> 是加权边的和，权重是两个顶点权重的乘积。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;课程链接 &lt;a href=&quot;http://homepages.warwick.ac.uk/staff/H.Liu.9/topic-comb-sdu2021.html&quot; title=&quot;Topic in Combinatorics&quot;&gt;Course Link&lt;/a&gt;&lt;/p&gt;
+&lt;</summary>
+      
+    
+    
+    
+    <category term="extend" scheme="http://furyton.github.io/categories/extend/"/>
+    
+    <category term="Graph Theory" scheme="http://furyton.github.io/categories/extend/Graph-Theory/"/>
+    
+    
+    <category term="Study" scheme="http://furyton.github.io/tags/Study/"/>
+    
+    <category term="note" scheme="http://furyton.github.io/tags/note/"/>
+    
+    <category term="Graph Theory" scheme="http://furyton.github.io/tags/Graph-Theory/"/>
+    
+    <category term="Turan problem" scheme="http://furyton.github.io/tags/Turan-problem/"/>
+    
+  </entry>
   
   <entry>
     <title>VHDL语言入门笔记</title>
