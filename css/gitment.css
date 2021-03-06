@@ -37,14 +37,12 @@
 
 @-webkit-keyframes gitment-spin {
     100% {
-        -webkit-transform: rotate(360deg);
         transform: rotate(360deg)
     }
 }
 
 @keyframes gitment-spin {
     100% {
-        -webkit-transform: rotate(360deg);
         transform: rotate(360deg)
     }
 }
@@ -214,7 +212,10 @@ a.gitment-comment-name:visited {
 
     white-space: nowrap;
     cursor: pointer;
-    user-select: none;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
 
     outline: none;
 }
@@ -268,7 +269,6 @@ a.gitment-editor-logout-link:hover {
     top: 0;
     bottom: 50px;
     pointer-events: none;
-    background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0), rgba(255, 255, 255, .9));
     background: linear-gradient(180deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, .9));
 }
 

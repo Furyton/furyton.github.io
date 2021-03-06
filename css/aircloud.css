@@ -21,8 +21,19 @@ body {
   display: block !important;
 }
 .show-block {
-  animation: showBlock 0.4s forwards;
+  -webkit-animation: showBlock 0.4s forwards;
+          animation: showBlock 0.4s forwards;
   display: block !important;
+}
+@-webkit-keyframes showBlock {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 @keyframes showBlock {
   from {
@@ -36,9 +47,21 @@ body {
 }
 .hide-block {
   display: block !important;
-  animation: hideBlock 0.4s forwards;
+  -webkit-animation: hideBlock 0.4s forwards;
+          animation: hideBlock 0.4s forwards;
   opacity: 1;
   transform: translateY(0);
+}
+@-webkit-keyframes hideBlock {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-100%);
+    display: none;
+  }
 }
 @keyframes hideBlock {
   from {
@@ -52,11 +75,21 @@ body {
   }
 }
 .show-flex-fade {
-  animation: showFade 0.4s forwards;
+  -webkit-animation: showFade 0.4s forwards;
+          animation: showFade 0.4s forwards;
   display: flex !important;
 }
 .hide-flex-fade {
-  animation: hideFade 0.4s forwards;
+  -webkit-animation: hideFade 0.4s forwards;
+          animation: hideFade 0.4s forwards;
+}
+@-webkit-keyframes showFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 @keyframes showFade {
   from {
@@ -64,6 +97,15 @@ body {
   }
   to {
     opacity: 1;
+  }
+}
+@-webkit-keyframes hideFade {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    display: none !important;
   }
 }
 @keyframes hideFade {
@@ -169,7 +211,10 @@ body {
   padding: 9px 10px;
   background: transparent;
   border: none;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 .site-nav-toggle button .btn-bar {
   display: block;
@@ -254,7 +299,6 @@ body {
 }
 .search-field .search-result-container::-webkit-scrollbar-thumb {
   background-color: #c3c4c7;
-  -webkit-border-radius: 2px;
   border-radius: 2px;
 }
 .search-field .search-result-container ul {
@@ -329,6 +373,8 @@ body {
 }
 .post-preview {
   width: 100%;
+  height: -webkit-max-content;
+  height: -moz-max-content;
   height: max-content;
   margin-bottom: 10px;
   box-sizing: border-box;
@@ -419,6 +465,8 @@ body {
   }
   .post-preview {
     width: 100%;
+    height: -webkit-max-content;
+    height: -moz-max-content;
     height: max-content;
     margin-bottom: 10px;
     box-sizing: border-box;
@@ -578,6 +626,8 @@ body {
 }
 .post-container {
   width: 100%;
+  height: -webkit-max-content;
+  height: -moz-max-content;
   height: max-content;
   display: flex;
   flex-direction: column;
@@ -724,7 +774,8 @@ body {
   margin-top: 45px;
   margin-bottom: 40px;
   opacity: 0;
-  animation: showBlock 1.6s forwards;
+  -webkit-animation: showBlock 1.6s forwards;
+          animation: showBlock 1.6s forwards;
 }
 .index-about i {
   font-size: 15px;
@@ -737,6 +788,8 @@ body {
 }
 .index-container {
   justify-content: center;
+  height: -webkit-max-content;
+  height: -moz-max-content;
   height: max-content;
   position: relative;
   width: 1024px;
@@ -1172,7 +1225,6 @@ pre .javascript .function {
 }
 .toc-article::-webkit-scrollbar-thumb {
   background-color: transparent;
-  -webkit-border-radius: 4px;
   border-radius: 2px;
 }
 .toc-article ol {
@@ -1223,7 +1275,6 @@ pre .javascript .function {
 }
 .toc-fixed::-webkit-scrollbar-thumb {
   background-color: #ffffff;
-  -webkit-border-radius: 4px;
   border-radius: 2px;
 }
 @media screen and (max-width: 1180px) {
@@ -1234,4 +1285,3 @@ pre .javascript .function {
 .gitment-comment p {
   text-indent: 0;
 }
-/*# sourceMappingURL=aircloud.css.map */
