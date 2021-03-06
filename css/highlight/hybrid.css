@@ -13,6 +13,9 @@ vim-hybrid theme by w0ng (https://github.com/w0ng/vim-hybrid)
 }
 
 /*selection color*/
+.highlight::-moz-selection, .highlight span::-moz-selection {
+  background: #373b41;
+}
 .highlight::selection,
 .highlight span::selection {
   background: #373b41;
