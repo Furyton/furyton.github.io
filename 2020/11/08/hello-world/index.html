@@ -352,6 +352,7 @@
     
     
     
+    <script src="/js/md5.js"></script>
     <script>
         function loadComment() {
             let e, i;
@@ -364,7 +365,7 @@
                     repo: 'Furyton.github.io',
                     owner: 'Furyton',
                     admin: 'Furyton',
-                    id: decodeURI(window.location.pathname),
+                    id: md5(window.location.pathname),
                     distractionFreeMode: false
                 });
                 gitalk.render('gitalk-container');

@@ -504,6 +504,7 @@ softmax(\frac{\boldsymbol{Q}\cdot \boldsymbol K^T}{\sqrt{d_k}}) \boldsymbol V
     
     
     
+    <script src="/js/md5.js"></script>
     <script>
         function loadComment() {
             let e, i;
@@ -516,7 +517,7 @@ softmax(\frac{\boldsymbol{Q}\cdot \boldsymbol K^T}{\sqrt{d_k}}) \boldsymbol V
                     repo: 'Furyton.github.io',
                     owner: 'Furyton',
                     admin: 'Furyton',
-                    id: decodeURI(window.location.pathname),
+                    id: md5(window.location.pathname),
                     distractionFreeMode: false
                 });
                 gitalk.render('gitalk-container');

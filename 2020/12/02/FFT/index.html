@@ -587,6 +587,7 @@ f_{even}\\\\\\\\f_{odd}
     
     
     
+    <script src="/js/md5.js"></script>
     <script>
         function loadComment() {
             let e, i;
@@ -599,7 +600,7 @@ f_{even}\\\\\\\\f_{odd}
                     repo: 'Furyton.github.io',
                     owner: 'Furyton',
                     admin: 'Furyton',
-                    id: decodeURI(window.location.pathname),
+                    id: md5(window.location.pathname),
                     distractionFreeMode: false
                 });
                 gitalk.render('gitalk-container');

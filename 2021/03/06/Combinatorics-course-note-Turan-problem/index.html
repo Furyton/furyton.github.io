@@ -461,6 +461,7 @@ ex(n,H)=\left ( 1-\frac{1}{\chi(H)-1}+o(1) \right )\frac{n^2}{2}
     
     
     
+    <script src="/js/md5.js"></script>
     <script>
         function loadComment() {
             let e, i;
@@ -473,7 +474,7 @@ ex(n,H)=\left ( 1-\frac{1}{\chi(H)-1}+o(1) \right )\frac{n^2}{2}
                     repo: 'Furyton.github.io',
                     owner: 'Furyton',
                     admin: 'Furyton',
-                    id: decodeURI(window.location.pathname),
+                    id: md5(window.location.pathname),
                     distractionFreeMode: false
                 });
                 gitalk.render('gitalk-container');
