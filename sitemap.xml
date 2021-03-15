@@ -93,7 +93,7 @@
   </url>
   
   <url>
-    <loc>http://furyton.github.io/2020/11/08/hello-world/</loc>
+    <loc>http://furyton.github.io/2021/03/08/hello-world/</loc>
     
     <lastmod>2020-11-08</lastmod>
     
@@ -102,7 +102,7 @@
 
   <url>
     <loc>http://furyton.github.io/</loc>
-    <lastmod>2021-03-07</lastmod>
+    <lastmod>2021-03-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -110,77 +110,77 @@
   
   <url>
     <loc>http://furyton.github.io/tags/note/</loc>
-    <lastmod>2021-03-07</lastmod>
+    <lastmod>2021-03-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://furyton.github.io/tags/Study/</loc>
-    <lastmod>2021-03-07</lastmod>
+    <lastmod>2021-03-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://furyton.github.io/tags/Graph-Theory/</loc>
-    <lastmod>2021-03-07</lastmod>
+    <lastmod>2021-03-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://furyton.github.io/tags/Turan-problem/</loc>
-    <lastmod>2021-03-07</lastmod>
+    <lastmod>2021-03-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://furyton.github.io/tags/Basic/</loc>
-    <lastmod>2021-03-07</lastmod>
+    <lastmod>2021-03-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://furyton.github.io/tags/Machine-Learning/</loc>
-    <lastmod>2021-03-07</lastmod>
+    <lastmod>2021-03-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://furyton.github.io/tags/NLP/</loc>
-    <lastmod>2021-03-07</lastmod>
+    <lastmod>2021-03-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://furyton.github.io/tags/VHDL/</loc>
-    <lastmod>2021-03-07</lastmod>
+    <lastmod>2021-03-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://furyton.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/</loc>
-    <lastmod>2021-03-07</lastmod>
+    <lastmod>2021-03-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://furyton.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
-    <lastmod>2021-03-07</lastmod>
+    <lastmod>2021-03-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://furyton.github.io/tags/test/</loc>
-    <lastmod>2021-03-07</lastmod>
+    <lastmod>2021-03-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -189,70 +189,70 @@
   
   <url>
     <loc>http://furyton.github.io/categories/extend/</loc>
-    <lastmod>2021-03-07</lastmod>
+    <lastmod>2021-03-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://furyton.github.io/categories/Lab/</loc>
-    <lastmod>2021-03-07</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://furyton.github.io/categories/Programming-language/</loc>
-    <lastmod>2021-03-07</lastmod>
+    <lastmod>2021-03-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://furyton.github.io/categories/extend/Graph-Theory/</loc>
-    <lastmod>2021-03-07</lastmod>
+    <lastmod>2021-03-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://furyton.github.io/categories/Programming-language/</loc>
+    <lastmod>2021-03-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://furyton.github.io/categories/Lab/Basic/</loc>
-    <lastmod>2021-03-07</lastmod>
+    <lastmod>2021-03-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://furyton.github.io/categories/Assign/</loc>
-    <lastmod>2021-03-07</lastmod>
+    <lastmod>2021-03-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://furyton.github.io/categories/test/</loc>
-    <lastmod>2021-03-07</lastmod>
+    <lastmod>2021-03-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://furyton.github.io/categories/Computer-Organization/</loc>
-    <lastmod>2021-03-07</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://furyton.github.io/categories/Optimization/</loc>
-    <lastmod>2021-03-07</lastmod>
+    <lastmod>2021-03-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://furyton.github.io/categories/Machine-Learning/</loc>
-    <lastmod>2021-03-07</lastmod>
+    <lastmod>2021-03-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://furyton.github.io/categories/Optimization/</loc>
+    <lastmod>2021-03-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
