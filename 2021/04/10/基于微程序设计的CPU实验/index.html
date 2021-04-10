@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+        <link rel="shortcut icon" href="/captain-america-shield-captain-america.png">
+    
+    
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    
+    
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    
+    
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    
+    
+        <link rel="mask-icon" href="/safari-pinned-tab.svg">
+    
+
+
+    <!-- meta -->
+
+
+<title>基于微程序设计的CPU实验 | Furyton</title>
+
+
+    <meta name="keywords" content="CPU design, experiment, homework, microcode">
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="微指令格式 32 bit 31: HALT 30..26 : S 25 : CN 23 : CP_PC 22 : CP_MAR 21 : CP_R 20 : CP_IR 19 : R_enable 18 : R_wen 17..15 : MUX_A 14..12 : MUX_B 11..10 : MUX_R_INA 9..8 : MUX_R_INB 7..6 : MUX_R_OUT 5 :">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于微程序设计的CPU实验">
+<meta property="og:url" content="http://furyton.github.io/2021/04/10/%E5%9F%BA%E4%BA%8E%E5%BE%AE%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E7%9A%84CPU%E5%AE%9E%E9%AA%8C/index.html">
+<meta property="og:site_name" content="Furyton">
+<meta property="og:description" content="微指令格式 32 bit 31: HALT 30..26 : S 25 : CN 23 : CP_PC 22 : CP_MAR 21 : CP_R 20 : CP_IR 19 : R_enable 18 : R_wen 17..15 : MUX_A 14..12 : MUX_B 11..10 : MUX_R_INA 9..8 : MUX_R_INB 7..6 : MUX_R_OUT 5 :">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://furyton.github.io/upload_image/core.png">
+<meta property="og:image" content="http://furyton.github.io/upload_image/CU.png">
+<meta property="og:image" content="http://furyton.github.io/upload_image/microcodeCPU.png">
+<meta property="og:image" content="http://furyton.github.io/upload_image/指令执行流程.png">
+<meta property="article:published_time" content="2021-04-09T16:57:53.000Z">
+<meta property="article:modified_time" content="2021-04-10T06:54:56.265Z">
+<meta property="article:author" content="Wu Shiguang">
+<meta property="article:tag" content="CPU design">
+<meta property="article:tag" content="experiment">
+<meta property="article:tag" content="homework">
+<meta property="article:tag" content="microcode">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://furyton.github.io/upload_image/core.png">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="https://cdn.jsdelivr.net/npm/highlight.js@10.1.2/styles/atom-one-light.css" media="none">
+        
+            <link rel="stylesheet" id="hl-dark-theme" href="https://cdn.jsdelivr.net/npm/highlight.js@10.1.2/styles/atom-one-dark.css" media="none">
+        
+    
+
+    
+
+    
+    
+<link rel="stylesheet" href="/css/style/dark.css">
+
+    
+<script src="/js/darkmode.js"></script>
+
+
+
+     
+
+    <!-- custom head -->
+
+    
+        <meta name="baidu-site-verification" content="code-X7mm2HpCMG" /> 
+    
+        <meta name="google-site-verification" content="MdF6kGSidGrvCpYUMmpTpg9Rxq2vUoK5C8kA5T9VxoQ" /> 
+    
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Furyton" type="application/atom+xml">
+</head>
+
+    <body>
+        <div id="app">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">Furyton&#39;s blog</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">Main</a>
+                
+                    <a href="/tags/" class="navbar-menu button">Tags</a>
+                
+                    <a href="/archives/" class="navbar-menu button">Archives</a>
+                
+                    <a href="/categories/" class="navbar-menu button">Categories</a>
+                
+                    <a href="/about/" class="navbar-menu button">About</a>
+                
+            </div>
+        
+        
+        
+    <a href="/search/" id="btn-search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
+    </a>
+
+
+        
+        
+    <a href="javaScript:void(0);" id="btn-toggle-dark">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </a>
+
+
+         
+    <a href="#" class="button" id="b2t" aria-label="Back to Top" title="Back to Top">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M233.376 722.752L278.624 768 512 534.624 745.376 768l45.248-45.248L512 444.128zM192 352h640V288H192z" fill="currentColor"></path>
+        </svg>
+    </a>
+
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">Main</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">Tags</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">Archives</a>
+                
+                    <a href="/categories/" class="dropdown-menu button">Categories</a>
+                
+                    <a href="/about/" class="dropdown-menu button">About</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        基于微程序设计的CPU实验
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2021/04/" class="post-meta__date button">2021-04-10</a>
+        
+    <span class="separate-dot"></span><a href="/categories/Computer-Organization/" class="button">Computer Organization</a>
+
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+
+<article class="post content-card">
+    <div class="post__header"></div>
+    <div class="post__content">
+        <h1 id="微指令格式">微指令格式</h1>
+<p>32 bit</p>
+<p><strong>31</strong>: HALT 30..26 : S <strong>25</strong> : CN <strong>23</strong> : CP_PC <strong>22</strong> : CP_MAR <strong>21</strong> : CP_R <strong>20</strong> : CP_IR <strong>19</strong> : R_enable <strong>18</strong> : R_wen <strong>17..15</strong> : MUX_A <strong>14..12</strong> : MUX_B</p>
+<p><strong>11..10</strong> : MUX_R_INA <strong>9..8</strong> : MUX_R_INB <strong>7..6</strong> : MUX_R_OUT <strong>5</strong> : RD <strong>4</strong> : WE <strong>3</strong> : MUX_ADDR <strong>2..0</strong> : code</p>
+<p><strong>31..24</strong> : Addr</p>
+<p>## explanation</p>
+<p>S, CN 为 ALU的操作码</p>
+<p>R_enable : reg_file 使能信号</p>
+<p>R_wen ：reg_file 写信号</p>
+<p>MUX_A, MUX_B ：A，B选择器</p>
+<p>MUX_R_INA ：A选择器中，reg_file 选择IR中哪一个位置的寄存器号</p>
+<p>MUX_R_INB ：B选择器中，reg_file 选择IR中哪一个位置的寄存器号</p>
+<p>MUX_R_OUT ：ALU的输出，reg_file 选择IR中哪一个位置的寄存器号</p>
+<p>RD ：RAM读使能</p>
+<p>WE：RAM写使能</p>
+<p>MUX_ADDR：选择PC、MAR作为RAM地址线</p>
+<p>code：下地址寻址方式</p>
+<h1 id="isa">ISA</h1>
+<p>参考MIPS 16bit指令集格式</p>
+<p>指令均为单字长(16 bit)，通用寄存器有8个，均为16 bit</p>
+<p>操作码为5位</p>
+<p>按指令格式区分，有六类指令</p>
+<ul>
+<li><table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">OPT</th>
+<th style="text-align: center;">R1(source)</th>
+<th style="text-align: center;">R2(source)</th>
+<th style="text-align: center;">R3(destination)</th>
+<th style="text-align: center;"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">5 bits</td>
+<td style="text-align: center;">3 bits</td>
+<td style="text-align: center;">3 bits</td>
+<td style="text-align: center;">3 bits</td>
+<td style="text-align: center;">2 bits</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>ADD</strong>， R1+R2 =&gt; R3</li>
+<li><strong>SUB</strong>， R1-R2 =&gt; R3</li>
+<li><strong>MULT</strong>, R1 * R2 =&gt; R3</li>
+<li><strong>DIV</strong>, R1 / R2 =&gt; R3</li>
+<li><strong>AND</strong>, R1 &amp; R2 =&gt; R3</li>
+<li><strong>OR</strong>, R1 | R2 =&gt; R3</li>
+<li><strong>XOR</strong>, R1 ^ R2 =&gt; R3</li>
+</ul></li>
+<li><table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">OPT</th>
+<th style="text-align: center;">R1(source)</th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;">R3(destination)</th>
+<th style="text-align: center;"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">5 bits</td>
+<td style="text-align: center;">3 bits</td>
+<td style="text-align: center;">3 bits</td>
+<td style="text-align: center;">3 bits</td>
+<td style="text-align: center;">2 bits</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>NOT</strong>, ~R1 =&gt; R3</li>
+<li><strong>SHL</strong>, R1&lt;&lt;1 =&gt; R3</li>
+<li><strong>SHR</strong> R1&gt;&gt;1 =&gt; R3</li>
+<li><strong>MOV</strong>, R1 =&gt; R3</li>
+<li><strong>LD</strong>, M[R1] =&gt; R3</li>
+<li><strong>ST</strong>, R1 =&gt; M[R3]</li>
+</ul></li>
+<li><table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">OPT</th>
+<th style="text-align: left;">R1(destination)</th>
+<th style="text-align: left;">Immediate number(source)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">5 bits</td>
+<td style="text-align: left;">3 bits</td>
+<td style="text-align: left;">8 bits</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>MVH</strong> immediate =&gt; High_Byte(R1)</li>
+<li><strong>MVL</strong> immediate =&gt; Low_Byte(R1)</li>
+</ul></li>
+<li><table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">OPT</th>
+<th style="text-align: center;">R1(source)</th>
+<th style="text-align: center;">R2(destination)</th>
+<th style="text-align: center;">Immediate number</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">5 bits</td>
+<td style="text-align: center;">3 bits</td>
+<td style="text-align: center;">3 bits</td>
+<td style="text-align: center;">5 bits</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>ADDI</strong> R1 + immediate =&gt; R2</li>
+<li><strong>SUBI</strong> R1 - immediate =&gt; R2</li>
+</ul></li>
+<li><table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">OPT</th>
+<th style="text-align: center;">R1</th>
+<th style="text-align: center;"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">5 bits</td>
+<td style="text-align: center;">3 bits</td>
+<td style="text-align: center;">8bits</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>UJMP</strong> PC jumps unconditionally to R1</li>
+<li><strong>CJMP</strong> PC jumps to R1 when C0 = 1</li>
+<li><strong>ZJMP</strong> PC jumps to R1 when FZ = 1</li>
+<li><strong>MOVSP</strong> R1 =&gt; SP</li>
+<li><strong>PUSH</strong> push R1 =&gt; stack[SP], SP ++</li>
+<li><strong>POP</strong> stack[SP] =&gt; R1, SP--</li>
+<li><strong>CALL</strong> run subroutine at R1</li>
+</ul></li>
+<li><table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">OPT</th>
+<th style="text-align: center;"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">5 bits</td>
+<td style="text-align: center;">11 bits</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>RET</strong> return from subroutine</li>
+<li><strong>RST</strong> 0 =&gt; PC</li>
+<li><strong>HALT</strong> 1 =&gt; halt</li>
+</ul></li>
+</ul>
+<h2 id="与讲义中的设计不同的地方">与讲义中的设计不同的地方</h2>
+<ul>
+<li>通用寄存器数量、指令字长等均有所增加。</li>
+<li>ALU拥有更多其他的功能，如无符号整数乘法、高（低）位byte的操作、存储A、B输入是否相等、结果是否溢出等等。</li>
+<li>指令的功能更加丰富，包括基本的逻辑和算术运算、有（无）条件跳转、栈的操作、简单的子程序调用等。</li>
+<li>A、B选择器并没有设计为互斥，故ALU的A、B输入端可以同时传入。</li>
+<li>PC、MAR、通用寄存器等的时钟脉冲没有设计为互斥，可以在同一上升沿中一起进行寄存。</li>
+<li>下地址字段的设计进行了改动，如：100表示下一个微地址为取指指令所在的微程序，简化了指令的微程序编写。</li>
+<li>指令均为单字长指令，且大部分为寄存器寻址，每条指令的微程序大大简化。</li>
+<li>缺点：由于指令集的精简，一些原本基本的操作可能需要1-3个指令才能实现。</li>
+</ul>
+<h2 id="cpu电路设计图">CPU电路设计图</h2>
+<h3 id="cpu核心">CPU核心</h3>
+<figure>
+<img src="\upload_image\core.png" alt="CPU core" /><figcaption aria-hidden="true">CPU core</figcaption>
+</figure>
+<h3 id="控制电路微程序控制">控制电路（微程序控制）</h3>
+<figure>
+<img src="\upload_image\CU.png" alt="CU" /><figcaption aria-hidden="true">CU</figcaption>
+</figure>
+<h3 id="cpu整体">CPU整体</h3>
+<figure>
+<img src="\upload_image\microcodeCPU.png" alt="CPU" /><figcaption aria-hidden="true">CPU</figcaption>
+</figure>
+<h2 id="数据通路">数据通路</h2>
+<h3 id="通用寄存器选择方式">通用寄存器选择方式</h3>
+<h4 id="alu-的输入">ALU 的输入</h4>
+<p>由于指令中有三个固定的位置上会出现寄存器的编号，因此设置了两层选择器，第一个是用来选择是启用指令中的R1、R2还是R3，第二个是A，B选择器，两个选择器都能够选择输入寄存器中的数据，即reg_files 为双端口输出。</p>
+<h4 id="alu的输出">ALU的输出</h4>
+<p>输出只需选择启用指令中的R1、R2还是R3。</p>
+<h4 id="说明">说明</h4>
+<p>指令上的选择器保留了00，即寄存器000号。它被作为SP（Stack Pointer）</p>
+<h3 id="数据通路-1">数据通路</h3>
+<ul>
+<li>reg_file: 通用寄存器组，8*16 bit，双端口输出</li>
+<li>ALU ： 有S0...S4，CN六个控制端，用以选择运算类型</li>
+<li>寄存器C0，FZ：分别用来保存ALU产生的进位信号和A、B相等信号</li>
+<li>RAM：读写操作分别收WE和RE信号控制</li>
+<li>MAR：RAM的地址寄存器</li>
+<li>IR：指令寄存器</li>
+</ul>
+<p>数据通路采用CPU内部三总线方式</p>
+<ul>
+<li>寄存器之间的数据传输
+<ul>
+<li><span class="math inline">\(R1 \overset{A 选择器}{\rightarrow} ALU \overset{A 直传}{\rightarrow} R2\)</span></li>
+</ul></li>
+<li>RAM 和 CPU之间的数据传输
+<ul>
+<li><span class="math inline">\(PC/MAR \overset{Bus, RE=1}{\rightarrow} RAM \overset{A 选择器} ALU \overset{A 直传}{\rightarrow} IR\)</span></li>
+<li><span class="math inline">\(PC/MAR \overset{Address Bus, WE=1}{\rightarrow} RAM, ALU \overset{Data Bus}{\rightarrow} RAM\)</span></li>
+</ul></li>
+<li>算术运算
+<ul>
+<li><p><span class="math inline">\(R1(IR) \overset{A 选择器}{\rightarrow} ALU, R2(IR) \overset{B 选择器}{\rightarrow} ALU, ALU \overset{S, CN}{\rightarrow} R3(IR)\)</span></p></li>
+<li><p>$PC ALU PC $</p></li>
+</ul></li>
+</ul>
+<h2 id="指令流程">指令流程</h2>
+<figure>
+<img src="\upload_image\指令执行流程.png" alt="Instruction flow" /><figcaption aria-hidden="true">Instruction flow</figcaption>
+</figure>
+<h2 id="测试指令">测试指令</h2>
+<p>暂无</p>
+<h2 id="代码">代码</h2>
+<p><a href="/files/HW/Computer%20Organization%20experiment/exp3/exp03.zip" title="code.zip contains the vhd codes and some .bdf files">click to download</a></p>
+
+    </div>
+     
+    <div class="post-footer__meta"><p>updated at 2021-04-10</p></div> 
+    <div class="post-meta__cats"><a href="/categories/Computer-Organization/" class="post-cats__link button">Computer Organization</a><a href="/tags/CPU-design/" class="post-tags__link button"># CPU design</a><a href="/tags/experiment/" class="post-tags__link button"># experiment</a><a href="/tags/homework/" class="post-tags__link button"># homework</a><a href="/tags/microcode/" class="post-tags__link button"># microcode</a></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2021/03/17/Linear-Analysis-introductory-Series-Basic-inequalities/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            Next Post
+                        </div>
+                        <div class="nav__title">
+                            Linear Analysis introductory Series - Basic inequalities
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+    <div class="post__comments content-card" id="comment">
+        
+    <h4>Comments</h4>
+    
+    
+    
+    
+    
+    <div id="gitalk-container"></div>
+
+    
+    
+    
+    
+    
+    
+
+
+    </div>
+
+
+
+</main>
+
+            <footer class="footer">
+    
+
+
+    
+     
+ 
+
+
+        
+            
+                <p class="footer-copyright">
+                    Copyright ©
+                    2021
+                        <a target="_blank" rel="noopener" href="https://github.com/Furyton">
+                            Furyton
+                        </a>
+                </p>
+                
+                    
+</footer>
+        </div>
+         
+
+ 
+
+ 
+
+ 
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement('script');
+            hm.src = 'https://hm.baidu.com/hm.js?00b1c580974b8695725e0ac0c3bc5826';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.css">
+
+    
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.js"></script>
+
+    <script>
+        let lazyloadT = Boolean('false'),
+            auto_fancybox = Boolean('false')
+        if (auto_fancybox) {
+            $(".post__content").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        } else {
+            $(".post__content").find("fancybox").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        }
+    </script>
+ 
+
+
+    <script>
+        if (typeof MathJax === 'undefined') {
+            window.MathJax = {
+                loader: {
+                    source: {
+                        '[tex]/amsCd': '[tex]/amscd',
+                        '[tex]/AMScd': '[tex]/amscd'
+                    }
+                },
+                tex: {
+                    inlineMath: {'[+]': [['$', '$']]},
+                    tags: 'ams'
+                },
+                options: {
+                    renderActions: {
+                        findScript: [10, doc => {
+                            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                                const display = !!node.type.match(/; *mode=display/);
+                                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                                const text = document.createTextNode('');
+                                node.parentNode.replaceChild(text, node);
+                                math.start = {node: text, delim: '', n: 0};
+                                math.end = {node: text, delim: '', n: 0};
+                                doc.math.push(math);
+                            });
+                        }, '', false],
+                        insertedScript: [200, () => {
+                            document.querySelectorAll('mjx-container').forEach(node => {
+                                let target = node.parentNode;
+                                if (target.nodeName.toLowerCase() === 'li') {
+                                    target.parentNode.classList.add('has-jax');
+                                }
+                            });
+                        }, '', false]
+                    }
+                }
+            };
+            (function () {
+                var script = document.createElement('script');
+                script.src = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js";
+                script.defer = true;
+                document.head.appendChild(script);
+            })();
+        } else {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+        }
+    </script>
+ 
+
+ 
+
+ 
+
+
+    
+
+    
+    
+    
+
+    
+    
+    
+    <script src="/js/md5.js"></script>
+    <script>
+        function loadComment() {
+            let e, i;
+            (e = document.createElement("script")).src = 'https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js',
+                document.body.appendChild(e);
+            e.onload = () => {
+                var gitalk = new Gitalk({
+                    clientID: '81d54a40aac37cc18601',
+                    clientSecret: 'e0cd9af81f74865269915de47331371f431a2c7d',
+                    repo: 'Furyton.github.io',
+                    owner: 'Furyton',
+                    admin: 'Furyton',
+                    id: md5(window.location.pathname),
+                    distractionFreeMode: false
+                });
+                gitalk.render('gitalk-container');
+            };
+            (i = document.createElement("link")).rel = "stylesheet",
+                i.href = 'https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css',
+                document.head.appendChild(i);
+        }
+
+        var runningOnBrowser = typeof window !== "undefined";
+        var isBot = runningOnBrowser && !("onscroll" in window) || typeof navigator !== "undefined" && /(gle|ing|ro|msn)bot|crawl|spider|yand|duckgo/i.test(navigator.userAgent);
+        var supportsIntersectionObserver = runningOnBrowser && "IntersectionObserver" in window;
+
+        setTimeout(function() {
+            if (!isBot && supportsIntersectionObserver) {
+                var comment_observer = new IntersectionObserver(function(entries) {
+                    if (entries[0].isIntersecting) {
+                        loadComment();
+                        comment_observer.disconnect();
+                    }
+                }, {
+                    threshold: [0]
+                });
+                comment_observer.observe(document.getElementById('comment'));
+            } else {
+                loadComment();
+            }
+        }, 1);
+    </script>
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+    
+    
+    
+
+
+
+    </body>
+</html>

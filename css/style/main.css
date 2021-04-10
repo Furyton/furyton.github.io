@@ -63,6 +63,37 @@ section {
   margin: 0 auto;
   max-width: 1024px;
 }
+table {
+  width: 100%;
+  max-width: 65em;
+  border: 1px solid #dedede;
+  margin: 15px auto;
+  border-collapse: collapse;
+  empty-cells: show;
+}
+table th,
+table td {
+  height: 35px;
+  border: 1px solid #dedede;
+  padding: 0 10px;
+}
+table th {
+  font-weight: bold;
+  text-align: center !important;
+  background: rgba(158,188,226,0.2);
+}
+table tbody tr:nth-child(2n) {
+  background: rgba(158,188,226,0.12);
+}
+table tr:hover {
+  background: #efefef;
+}
+table th {
+  white-space: nowrap;
+}
+table td:nth-child(1) {
+  white-space: nowrap;
+}
 .content-card {
   background-color: var(--bg-content-color);
   max-width: var(--content-width);
@@ -326,7 +357,6 @@ dl,
 ol,
 p,
 pre,
-table,
 ul {
   margin-top: 0px;
   margin-bottom: 20px;
@@ -337,33 +367,6 @@ ul ol,
 ul ul {
   margin-top: 0;
   margin-bottom: 0;
-}
-figure {
-  padding: 0;
-  margin: 0;
-  margin-bottom: 20px;
-}
-table {
-  display: block;
-  width: 100%;
-  overflow: auto;
-}
-figure table {
-  border: none;
-  padding: 0;
-  max-width: 100%;
-}
-figure table th {
-  font-weight: 600;
-}
-figure table tr {
-  background-color: transparent;
-  border-top: none;
-}
-figure table td.gutter {
-  padding-right: 1rem;
-  text-align: right;
-  background-color: transparent;
 }
 .highlight {
   margin-bottom: 20px;
@@ -835,6 +838,9 @@ overflows table td {
 }
 .footer svg {
   margin-right: 0.2rem;
+}
+tr.header {
+  display: contents;
 }
 .header {
   display: flex;
