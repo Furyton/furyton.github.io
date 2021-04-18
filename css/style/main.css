@@ -11,7 +11,7 @@
   --title-color: #50596c;
   --border-color: rgba(0,0,0,0.1);
   --space: 2.5rem;
-  --content-width: 61.8%;
+  --content-width: 776px;
 }
 ::-webkit-scrollbar {
   width: 0.55rem !important;
@@ -110,8 +110,13 @@ table td:nth-child(1) {
 .content-card>:last-child {
   margin-bottom: 0;
 }
+@media screen and (min-width: 800px) {
+  .content-card {
+    max-width: 80%;
+  }
+}
 .MathJax {
-  overflow-x: auto;
+  overflow-x: scroll;
   overflow-y: hidden;
 }
 .separate-dot:after {
@@ -400,8 +405,10 @@ pre {
   vertical-align: middle;
 }
 table {
+  max-width: 100%;
   border-spacing: 0;
   border-collapse: collapse;
+  overflow: scroll;
 }
 table th:not(.code):not(.gutter) {
   font-weight: 700;
@@ -421,7 +428,7 @@ table th:not(.code):not(.gutter) {
   border: 1px solid var(--border-color);
 }
 overflows table {
-  overflow: auto;
+  overflow: scroll;
 }
 overflows table th,
 overflows table td {
@@ -435,6 +442,12 @@ overflows table td {
   color: var(--body-color);
   font-size: 16px;
   word-wrap: break-word;
+}
+.post-entry__content p,
+.post__content p,
+.post-entry__content ul,
+.post__content ul {
+  overflow: auto;
 }
 .post-entry__content a,
 .post__content a {
@@ -1096,7 +1109,7 @@ a.search-result__link:hover {
 }
 .post-side .post-side__toc .toc {
   display: none;
-  width: calc((100vw - 61.8%) / 2 - 12.6px);
+  width: calc((100vw - 776px) / 2 - 12.6px);
   height: calc(100vh - 60px * 2 - 20px);
   padding-left: 0.6rem;
 }
