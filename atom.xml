@@ -6,7 +6,7 @@
   <link href="http://furyton.github.io/atom.xml" rel="self"/>
   
   <link href="http://furyton.github.io/"/>
-  <updated>2021-06-18T06:18:30.210Z</updated>
+  <updated>2021-06-19T17:39:29.927Z</updated>
   <id>http://furyton.github.io/</id>
   
   <author>
@@ -15,6 +15,39 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>凸集</title>
+    <link href="http://furyton.github.io/2021/06/20/%E5%87%B8%E9%9B%86/"/>
+    <id>http://furyton.github.io/2021/06/20/%E5%87%B8%E9%9B%86/</id>
+    <published>2021-06-19T17:32:46.000Z</published>
+    <updated>2021-06-19T17:39:29.927Z</updated>
+    
+    <content type="html"><![CDATA[<iframe src="/files/NOTES/ConvexOptimization/ConvexSet/note.pdf" width="100%" height="100%">your browser does not support PDF. Please download the PDF to view it: <a href="/files/NOTES/ConvexOptimization/ConvexSet/note.pdf">note.pdf</a></iframe>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;iframe src=&quot;/files/NOTES/ConvexOptimization/ConvexSet/note.pdf&quot; width=&quot;100%&quot; height=&quot;100%&quot;&gt;
+your browser does not support PDF. Please down</summary>
+      
+    
+    
+    
+    <category term="Lab" scheme="http://furyton.github.io/categories/Lab/"/>
+    
+    <category term="Basic" scheme="http://furyton.github.io/categories/Lab/Basic/"/>
+    
+    <category term="Optimization" scheme="http://furyton.github.io/categories/Optimization/"/>
+    
+    
+    <category term="Study" scheme="http://furyton.github.io/tags/Study/"/>
+    
+    <category term="Baisc" scheme="http://furyton.github.io/tags/Baisc/"/>
+    
+    <category term="convex set" scheme="http://furyton.github.io/tags/convex-set/"/>
+    
+  </entry>
   
   <entry>
     <title>Basic Topology(I)-Intuition</title>
@@ -165,9 +198,9 @@ f\left( \sum_{i=1}^{</summary>
     
     
     
-    <category term="Computer Organization" scheme="http://furyton.github.io/categories/Computer-Organization/"/>
-    
     <category term="Programming language" scheme="http://furyton.github.io/categories/Programming-language/"/>
+    
+    <category term="Computer Organization" scheme="http://furyton.github.io/categories/Computer-Organization/"/>
     
     
     <category term="note" scheme="http://furyton.github.io/tags/note/"/>
@@ -211,7 +244,7 @@ f\left( \sum_{i=1}^{</summary>
     <link href="http://furyton.github.io/2021/01/27/%E5%87%B8%E5%87%BD%E6%95%B0/"/>
     <id>http://furyton.github.io/2021/01/27/%E5%87%B8%E5%87%BD%E6%95%B0/</id>
     <published>2021-01-27T13:25:10.000Z</published>
-    <updated>2021-05-05T13:04:35.757Z</updated>
+    <updated>2021-06-19T17:35:01.625Z</updated>
     
     <content type="html"><![CDATA[<p>参考书 Boyd <em>Convex Optimization</em></p><h2 id="基本的概念和性质">基本的概念和性质</h2><h3 id="什么是凸函数">什么是凸函数</h3><p><span class="math inline">\(f:\mathbf {R}^n \rightarrow \mathbf {R}, \quad \mathbf {dom} f\)</span> 是个凸集，<span class="math inline">\(0 \leq \theta \leq 1\)</span> <span class="math display">\[f(\theta x + (1-\theta)y)\leq \theta f(x) + (1-\theta)f(y)\]</span> 严格凸就是不会取到等号</p><p>凹函数就是凸函数加个负号</p><p>仿射函数是比较特殊的，它既是凸函数又是凹函数，反过来也成立。相当于凹函数和凸函数的一个共有的临界的函数。</p><h4 id="扩展值延伸">扩展值延伸</h4><p>为了让凸函数在整个实数集上有定义，在定义域外令值为无穷，具体的为正无穷<span class="math inline">\(+\infty\)</span>(相反，若为凹函数，则定义为负无穷<span class="math inline">\(-\infty\)</span>) <span class="math display">\[\tilde{f}(x)=\left\{\begin{matrix}f(x) &amp;x\in\mathbf{dom}f\\ \infty &amp; x\notin \mathbf{dom}f\end{matrix}\right.\]</span></p><h3 id="判定条件">判定条件</h3><h4 id="一阶条件">一阶条件</h4><p>假设 <span class="math inline">\(f\)</span> 可微，对 <span class="math inline">\(\forall x,y \in \mathbf{dom}f\)</span> <span class="math display">\[f(y) \geqslant  f(x) + \bigtriangledown f(x)^T(y-x)\]</span> 联系了局部信息和全局信息</p><p>严格凸及凹的情况略</p><h4 id="二阶条件">二阶条件</h4><p>假设二阶可微，其Hessian矩阵是半正定的</p><p>未完待续。。。。</p>]]></content>
     
@@ -236,6 +269,8 @@ f\left( \sum_{i=1}^{</summary>
     <category term="Basic" scheme="http://furyton.github.io/tags/Basic/"/>
     
     <category term="Study" scheme="http://furyton.github.io/tags/Study/"/>
+    
+    <category term="convex function" scheme="http://furyton.github.io/tags/convex-function/"/>
     
   </entry>
   
