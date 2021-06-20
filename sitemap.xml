@@ -158,20 +158,6 @@
   </url>
   
   <url>
-    <loc>http://furyton.github.io/tags/Linear-Analysis/</loc>
-    <lastmod>2021-06-20</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://furyton.github.io/tags/inequalities/</loc>
-    <lastmod>2021-06-20</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://furyton.github.io/tags/Graph-Theory/</loc>
     <lastmod>2021-06-20</lastmod>
     <changefreq>daily</changefreq>
@@ -180,6 +166,20 @@
   
   <url>
     <loc>http://furyton.github.io/tags/Turan-problem/</loc>
+    <lastmod>2021-06-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://furyton.github.io/tags/Linear-Analysis/</loc>
+    <lastmod>2021-06-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://furyton.github.io/tags/inequalities/</loc>
     <lastmod>2021-06-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -201,6 +201,20 @@
   
   <url>
     <loc>http://furyton.github.io/tags/VHDL/</loc>
+    <lastmod>2021-06-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://furyton.github.io/tags/Baisc/</loc>
+    <lastmod>2021-06-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://furyton.github.io/tags/convex-set/</loc>
     <lastmod>2021-06-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -242,20 +256,6 @@
   </url>
   
   <url>
-    <loc>http://furyton.github.io/tags/Baisc/</loc>
-    <lastmod>2021-06-20</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://furyton.github.io/tags/convex-set/</loc>
-    <lastmod>2021-06-20</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://furyton.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/</loc>
     <lastmod>2021-06-20</lastmod>
     <changefreq>daily</changefreq>
@@ -286,7 +286,7 @@
   </url>
   
   <url>
-    <loc>http://furyton.github.io/categories/extend/Graph-Theory/</loc>
+    <loc>http://furyton.github.io/categories/extend/Linear-Analysis/</loc>
     <lastmod>2021-06-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -307,7 +307,7 @@
   </url>
   
   <url>
-    <loc>http://furyton.github.io/categories/extend/Linear-Analysis/</loc>
+    <loc>http://furyton.github.io/categories/extend/Graph-Theory/</loc>
     <lastmod>2021-06-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
