@@ -112,7 +112,7 @@ table td:nth-child(1) {
 }
 @media screen and (min-width: 800px) {
   .content-card {
-    max-width: 80%;
+    max-width: 61.8%;
   }
 }
 .MathJax {
@@ -749,6 +749,11 @@ overflows table td {
 }
 .post__comments:empty {
   display: none;
+}
+@media screen and (min-width: 800px) {
+  .post__comments {
+    max-width: 61.8%;
+  }
 }
 .post-footer__meta {
   font-size: 14px;
