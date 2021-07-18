@@ -35,28 +35,29 @@
     <!-- meta -->
 
 
-<title>Logistic Regression and Maximum Entropy Model | Furyton</title>
+<title>预训练模型学习(PTM) | Furyton</title>
 
 
-    <meta name="keywords" content="Basic, Study">
+    <meta name="keywords" content="Machine Learning, NLP, Pre-Trained Model">
 
 
 
 
     <!-- OpenGraph -->
  
-    <meta name="description" content="Logistic Regression 简介：一种简单的统计分类方法，因为使用了Logistic函数得名。称作回归(Regression)的原因是，这个模型实质是在做函数的拟合问题。 Logistic Function \[ f(x)&#x3D;\frac{1}{1+e^{-x}} \] 介于\(0\) ~ \(1\)之间 二分类的Logistic模型 \[ P(Y&#x3D;1|x)&#x3D;\frac{">
+    <meta name="description" content="PTM in NLP 背景 语言表示学习 一个核心的任务是对词语进行编码(称为词嵌入)以便后续其他的NLP任务，但容易想到词语的含义依赖于语境，也就是上下文。 非上下文嵌入 早期的词嵌入方法是静态的、上下文无关的。核心的想法类似于查表，通过训练得到一个embedding矩阵，最经典的就是 Word2Vec 。模型规模较小、计算效率高，但上下文无关性以及词汇表有限都是它很大的问题。如果要用">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Logistic Regression and Maximum Entropy Model">
-<meta property="og:url" content="http://furyton.github.io/2021/02/15/Logistic-regression/index.html">
+<meta property="og:title" content="预训练模型学习(PTM)">
+<meta property="og:url" content="http://furyton.github.io/2021/07/18/%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0-PTM/index.html">
 <meta property="og:site_name" content="Furyton">
-<meta property="og:description" content="Logistic Regression 简介：一种简单的统计分类方法，因为使用了Logistic函数得名。称作回归(Regression)的原因是，这个模型实质是在做函数的拟合问题。 Logistic Function \[ f(x)&#x3D;\frac{1}{1+e^{-x}} \] 介于\(0\) ~ \(1\)之间 二分类的Logistic模型 \[ P(Y&#x3D;1|x)&#x3D;\frac{">
+<meta property="og:description" content="PTM in NLP 背景 语言表示学习 一个核心的任务是对词语进行编码(称为词嵌入)以便后续其他的NLP任务，但容易想到词语的含义依赖于语境，也就是上下文。 非上下文嵌入 早期的词嵌入方法是静态的、上下文无关的。核心的想法类似于查表，通过训练得到一个embedding矩阵，最经典的就是 Word2Vec 。模型规模较小、计算效率高，但上下文无关性以及词汇表有限都是它很大的问题。如果要用">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-02-15T07:56:55.000Z">
-<meta property="article:modified_time" content="2021-02-16T10:53:33.302Z">
+<meta property="article:published_time" content="2021-07-18T09:32:03.000Z">
+<meta property="article:modified_time" content="2021-07-18T15:53:03.481Z">
 <meta property="article:author" content="Wu Shiguang">
-<meta property="article:tag" content="Basic">
-<meta property="article:tag" content="Study">
+<meta property="article:tag" content="Machine Learning">
+<meta property="article:tag" content="NLP">
+<meta property="article:tag" content="Pre-Trained Model">
 <meta name="twitter:card" content="summary_large_image">
 
 
@@ -168,14 +169,16 @@
 
 <div class="post-title">
     <h1 class="post-title__text">
-        Logistic Regression and Maximum Entropy Model
+        预训练模型学习(PTM)
     </h1>
     <div class="post-title__meta">
-        <a href="/archives/2021/02/" class="post-meta__date button">2021-02-15</a>
+        <a href="/archives/2021/07/" class="post-meta__date button">2021-07-18</a>
         
     <span class="separate-dot"></span><a href="/categories/Lab/" class="button">Lab</a>
 
     <span class="separate-dot"></span><a href="/categories/Lab/Basic/" class="button">Basic</a>
+
+    <span class="separate-dot"></span><a href="/categories/Machine-Learning/" class="button">Machine Learning</a>
 
  
         
@@ -194,132 +197,99 @@
 <article class="post content-card">
     <div class="post__header"></div>
     <div class="post__content">
-        <h1 id="logistic-regression">Logistic Regression</h1>
-<p>简介：一种简单的统计分类方法，因为使用了Logistic函数得名。称作回归(Regression)的原因是，这个模型实质是在做函数的拟合问题。</p>
-<h2 id="logistic-function">Logistic Function</h2>
-<p><span class="math display">\[
-f(x)=\frac{1}{1+e^{-x}}
-\]</span></p>
-<p>介于<span class="math inline">\(0\)</span> ~ <span class="math inline">\(1\)</span>之间</p>
-<h2 id="二分类的logistic模型">二分类的Logistic模型</h2>
-<p><span class="math display">\[
-P(Y=1|x)=\frac{exp(w\cdot x+b)}{1+exp(w\cdot x+b)}
-\]</span> <span class="math display">\[
-P(Y=0|x)=\frac{1}{1+exp(w\cdot x+b)}
-\]</span> <span class="math inline">\(w，x \in \mathbf{R}^n\)</span> , <span class="math inline">\(b \in \mathbf{R}\)</span></p>
-<p>将 <span class="math inline">\(b\)</span> 并入到 <span class="math inline">\(w\)</span> 中，扩充 <span class="math inline">\(w\)</span> 和 <span class="math inline">\(x\)</span> ，从而得到更简洁的表达 <span class="math display">\[
-P(Y=1|x)=\frac{exp(w\cdot x)}{1+exp(w\cdot x)}
-\]</span> <span class="math display">\[
-P(Y=0|x)=\frac{1}{1+exp(w\cdot x)}
-\]</span></p>
-<h3 id="对模型的理解">对模型的理解</h3>
-<h4 id="几率odd">几率(odd)</h4>
-<p>记事件发生的概率为 <span class="math inline">\(p\)</span> ，那么事件发生的几率为 <span class="math inline">\(\frac{p}{1-p}\)</span></p>
-<p>对数几率(log odd / logit 函数) <span class="math display">\[
-logit(p)=log\frac{p}{1-p}
-\]</span> 对于Logistic回归来说 <span class="math display">\[
-log\frac{P(Y=1|x)}{1-P(Y=1|x)}=w\cdot x
-\]</span> 可以看出，这是在用线性模型来拟合logit函数，故称为“回归模型”</p>
-<h4 id="logistic函数">Logistic函数</h4>
-<p>另一个角度看，Logistic函数将原本取值在实数集上的变量投影到了<span class="math inline">\((0,1)\)</span> ，也就是一个概率所属的范围。</p>
-<h3 id="模型的求解">模型的求解</h3>
-<p>极大似然估计，采用数值分析的方法(梯度下降法，拟牛顿法等)求解参数向量 <span class="math inline">\(w\)</span></p>
-<h3 id="多分类的logistic回归模型">多分类的Logistic回归模型</h3>
-<p><span class="math inline">\(Y\)</span> 的取值范围是{1, 2, 3, ... , K} <span class="math display">\[
-P(Y=k|x)=\frac{exp(w_k \cdot x)}{1+\sum_{k=1}^{K-1}exp(w_k\cdot x)},\quad k=1,2,\dots, K-1 
-\]</span> <span class="math display">\[
-P(Y=K|x)=\frac{1}{1+\sum_{k=1}^{K-1}exp(w_k\cdot x)}
-\]</span></p>
-<h1 id="最大熵模型">最大熵模型</h1>
-<p>简介：最大熵模型是根据最大熵原理得到的，简单说，在所有可能的概率模型中，熵最大的模型是最好的，因为它保留了最大的不确定性，所有不确定的部分都是接近"等可能的"，减小了对不确定因素的偏见。</p>
-<h2 id="模型的定义">模型的定义</h2>
-<p>利用最大熵原理，获得一个简单的分类模型。这里所求的模型是条件概率模型。根据给定的训练集，可以获得联合分布<span class="math inline">\(P(X,Y)\)</span>的经验分布，以及边缘分布<span class="math inline">\(P(X)\)</span>的经验分布，分别记为<span class="math inline">\(\tilde{P}(X,Y)\)</span> 和 <span class="math inline">\(\tilde{P}(X)\)</span> 。</p>
-<h3 id="约束">约束</h3>
-<p>约束就是分类问题中确定的条件，也就是输入与输出之间一些已知的事实。</p>
-<p>约束用特征函数表示。 <span class="math display">\[
-f(x,y)=\left\{\begin{matrix}
-1 ,&amp; x和y满足某一事实\\ 
-0 ,&amp; 否则
-\end{matrix}\right.
-\]</span> 如果模型能够学习到数据中的信息，那么就可以<strong>假设</strong>特征函数关于经验分布和模型分布的期望是相等的。</p>
-<p>关于经验分布的期望 <span class="math display">\[
-E_{\tilde{P}}(f)=\sum_{x,y}\tilde{P}(x,y)f(x,y)
-\]</span> 关于模型的条件分布的期望 <span class="math display">\[
-E_P(f)=\sum_{x,y}\tilde{P}(x)P(y|x)f(x,y)
-\]</span> 两者应当相等 ，即 <span class="math display">\[
-E_{\tilde{P}}(f)=E_P(f)
-\]</span></p>
-<p>另外，特征函数也可不只一个。</p>
-<h3 id="熵">熵</h3>
-<p>条件熵 <span class="math display">\[
-H(P)=-\sum_{x,y}\tilde{P}(x)P(y\,|\,x)\,logP(y\,|\,x)
-\]</span></p>
-<h3 id="模型学习">模型学习</h3>
-<p>约束最优化问题 <span class="math display">\[
-\max_{P}\quad H(P)=-\sum_{x,y}\tilde{P}(x)P(y\,|\,x)\,logP(y\,|\,x)
-\]</span></p>
-<p><span class="math display">\[
-s.t.\quad E_{\tilde{P}}(f_i)=E_P(f_i),\ i=1,2,...,n
-\]</span></p>
-<p><span class="math display">\[
-\sum_yP(y\,|\,x)=1
-\]</span></p>
-<p>根据拉格朗日乘子法， <span class="math display">\[
-L(P,w)=-H(P)+w_0\left ( 1-\sum_yP(y\,|\,x)\right)+\sum_{i=1}^{n}w_i(E_{\tilde{P}}(f_i)-E_P(f_i))
-\]</span> 问题转化为 <span class="math display">\[
-\min_{P}\max_{w}L(P,w)
-\]</span> 对偶问题 <span class="math display">\[
-\max_{w}\min_{P}L(P,w)
-\]</span> 因为<span class="math inline">\(L(P,w)\)</span> 是 P 的凸函数，故原始问题和对偶问题是等价的。(但其实两者等价的条件我还没学。。。我不懂，我不会)</p>
-<p>通过对偶问题里面的极小化，可以获得一个含参的分布 <span class="math display">\[
-P_w(y\,|\,x)=\frac{1}{Z_w(x)}exp\left ( \sum_{i=1}^{n}w_if_i(x,y) \right )
-\]</span></p>
-<p><span class="math display">\[
-Z_w(x)=\sum_yexp\left ( \sum_{i=1}^{n}w_if_i(x,y) \right )
-\]</span></p>
-<p>其中<span class="math inline">\(Z_w(x)\)</span> 是正规化因子，<span class="math inline">\(w_i\)</span>是参数、权值。</p>
-<p>下面在进一步去求外面的极大化就可以把参数求出来。</p>
-<p>PS：最后一步的极大化其实等价于直接利用得到的含参的分布去做极大似然估计。</p>
-<h3 id="模型求解">模型求解</h3>
+        <h1 id="ptm-in-nlp">PTM in NLP</h1>
+<h2 id="背景">背景</h2>
+<h3 id="语言表示学习">语言表示学习</h3>
+<p>一个核心的任务是对词语进行编码(称为词嵌入)以便后续其他的NLP任务，但容易想到词语的含义依赖于语境，也就是上下文。</p>
+<h4 id="非上下文嵌入">非上下文嵌入</h4>
+<p>早期的词嵌入方法是静态的、上下文无关的。核心的想法类似于查表，通过训练得到一个embedding矩阵，最经典的就是 <a href="https://furyton.github.io/2020/11/11/Word2Vec/">Word2Vec</a> 。模型规模较小、计算效率高，但<strong>上下文无关性以及词汇表有限</strong>都是它很大的问题。如果要用它一般得接上一个上下文的编码器。</p>
+<h4 id="上下文嵌入">上下文嵌入</h4>
+<p>后来为了解决上下文问题，将静态的查表改为了动态的编码，即获得一个编码器，输入一段上下文可以得到对应的编码。各种经典的神经网络模型接踵而至，大致分为三类：基于卷积模型、序列模型和图模型。</p>
+<p>前两种模型对局部信息容易掌握，但<strong>全局信息或者长期信息难以关联起来</strong>。图模型传统上是用结点代表词语，预先定义它的结构来学习，这就很依赖专家知识。后来实践上干脆直接采用全连接的图，让模型自己去学习词之间的关系，具体的是通过注意力机制去计算，而实现这一想法的代表作就是大名鼎鼎的<a href="https://furyton.github.io/2020/11/09/Transformer模型学习笔记/">变形金刚</a>。但由于它模型复杂度很高，偏差就很小，导致<strong>小数据上非常容易过拟合</strong></p>
+<h2 id="为什么要预训练">为什么要预训练</h2>
+<p>主要原因是数据问题，NLP中未标记数据占比太大，为了能利用它们想出的这么一个办法，来学习所谓“通用”的知识，作为下游任务的初始化部分，也可以看作是一种正则化。</p>
+<h2 id="ptm需要考虑的问题">PTM需要考虑的问题</h2>
+<h3 id="训练的任务">训练的任务</h3>
+<p>由于是在未标记的数据上训练，所以很多PTM都是采用无监督或者是自监督。自监督大约就是自己出题自己做。我们也能看到，许多人给自己的模型出了不同的题目，随之产生的模型种类也非常多。</p>
 <ul>
-<li>有一个改进的迭代尺度法，计算每次参数 <span class="math inline">\(w\)</span> 的增量 <span class="math inline">\(\delta\)</span> , 关注<span class="math inline">\(L(w+\delta)-L(w)\)</span> , 经过放缩确定下界， 为了得到更大的该变量。放缩是因为，原式太复杂。</li>
-<li>拟牛顿法</li>
+<li>LM (Language Model)：最常见最普通的无监督任务，就是知道前i个单词，算下一个单词的概率，通过极大似然估计来训练。</li>
+<li>MLM(Masked Language Model)：就是遮住部分单词，去做完形填空，代表作就是BERT。有相当多的衍生和改进版。</li>
+<li>PLM(permutation)：大致就是随机改变某些单词的位置，但假装这就是原始位置(即输入的位置编码还是原始的)，让模型再去做从左往右预测下一个单词的任务。这样模型能够随机的看到上下文的信息，不需要mask。代表作是 XLNet。看上去比较有趣。</li>
+<li>DAE(Denoising autoencoder)：主要就是我给模型输入了一个认为注入了噪声的序列，我希望模型能够将噪声去除。噪声就有很多种了，比如加上Mask(这样就是MLM了)、删掉某个单词、打乱句子顺序等等。</li>
+<li>CTL(Contrastive Learning)：如同我在笔记<a href="https://furyton.github.io/2020/11/11/Word2Vec/">Word2Vec</a> 中提到的，选择一个负样本作为对比来训练，这样降低了计算的复杂度。之前被用在非上下文嵌入上了，最近有新的CTL任务。
+<ul>
+<li>Deep Infomax ：大致就是把word2vec里的查表部分换成了用编码器。训练任务是Mask，让序列的编码和被遮挡的部分的编码尽可能地相似。</li>
+<li>Replaced Token Detection：上一个任务类似，换了训练目标，预测一个单词是否被替换。</li>
+<li>ELECTRA：生成器加判别器，先用MLM训练生成器，在用它初始化判别器进行训练，判别器的训练任务是判别哪些词被生成器替换了。emmm</li>
+<li>Next Sentence Prediction：BERT提了这个任务，就是判断两个句子是不是连续出现的。但是又来有很多人研究发现去除/不用NSP效果会更好的🤣</li>
+<li>Sentence Order Prediction：把NSP任务里的loss换掉了，作者认为是NSP融合了主题预测和连贯性预测，而前者的子任务更简单所以模型就忽视了后者。SOP是对比学习，把连续的两个句子作为正样本，两个句子顺序交换作为负样本。emmm，很合理。</li>
+</ul></li>
+</ul>
+<h4 id="模型分析">模型分析</h4>
+<ul>
+<li>非上下文嵌入虽然是静态的，但他对于一些预测分类很擅长，类似于"Germany"+"captital" <span class="math inline">\(\approx\)</span> "Berlin" 。</li>
+<li>对于BERT，有很多研究表明它对于句法方面的任务很不错，例如词性识别、成分标记等等，但词义等方面一般般。这被称为“<strong>语言知识</strong>”。除此之外，有部分研究发现BERT对于一些常识性的知识也还不错。“<strong>世界知识</strong>”</li>
+</ul>
+<h3 id="模型压缩">模型压缩</h3>
+<p>PTM太大，有人考虑压缩它。</p>
+<ul>
+<li>剪枝。。。</li>
+<li>量化(不太明白这个命名的意义)，就是降低精度。。。</li>
+<li>模型共享，大概就是参数共享等等。有个比较出名的模型叫ALBERT</li>
+<li>知识蒸馏，大概就是用一个小的student模型去拟合或近似大模型。这方面的研究还挺多。</li>
+<li>模型替换，把PTM中较大的模块换成比较小的模块。</li>
+</ul>
+<h3 id="怎么用到下游任务">怎么用到下游任务</h3>
+<h4 id="选择合适的ptm">选择合适的PTM</h4>
+<p>不同的PTM任务会适合不同的下游任务，PTM模型的结构也多少取决于它的任务，因而也会影响在下游任务的表现。还有数据问题。</p>
+<h4 id="选择合适的层">选择合适的层</h4>
+<p>有人发现BERT较低的层捕捉基本的句法信息，更高的层捕获高层次的语义信息。因而不同的下游任务也可以选择不同的层来使用，比如只用静态嵌入（Word2Vec），难以捕捉高层次信息；还有使用顶层的表示；还有将所有层的表示加权一起使用的。。。</p>
+<h4 id="是否微调">是否微调</h4>
+<ul>
+<li>特征提取：预训练模型参数被冻结。不利预迁移中间层信息。</li>
+<li>微调：PTM的参数不被冻结。很多的下游任务都是采用微调。微调的方式也很多。</li>
+</ul>
+<h2 id="方向">方向</h2>
+<ul>
+<li>PTM上界：更有效的模型结构，任务等。<strong>ELECTRA</strong></li>
+<li>PTM的计算复杂性优化。<strong>Transformer-XL</strong></li>
+<li>模型压缩</li>
+<li>更高效的微调</li>
+<li>可解释性和可靠性。</li>
+</ul>
+<h2 id="小感悟">小感悟</h2>
+<ul>
+<li>模型大了，数据多了，人们说的话也变抽象了。”知识“来、”知识“去，这很抽象。暴力出奇迹，模型太大了，人都快驾驭不了了的😂</li>
+<li>突然发现PTM这块是个不小的领域，有很多的突飞猛进的进展和很多待解决的问题欸。尤其是有这么多的PTM ，感觉入了个大坑。</li>
+</ul>
+<hr />
+<p>reference：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/139479425">自然语言处理中的预训练模型（上） - 知乎 (zhihu.com)</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/142757748">自然语言处理中的预训练模型（下） - 知乎 (zhihu.com)</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/sandwichnlp/p/11947627.html">预训练语言模型整理（ELMo/GPT/BERT...） - 西多士NLP - 博客园 (cnblogs.com)</a></li>
 </ul>
 
     </div>
      
-    <div class="post-footer__meta"><p>updated at 2021-02-16</p></div> 
-    <div class="post-meta__cats"><a href="/categories/Lab/" class="post-cats__link button">Lab</a><a href="/categories/Lab/Basic/" class="post-cats__link button">Basic</a><a href="/tags/Basic/" class="post-tags__link button"># Basic</a><a href="/tags/Study/" class="post-tags__link button"># Study</a></div> 
+    <div class="post-footer__meta"><p>updated at 2021-07-18</p></div> 
+    <div class="post-meta__cats"><a href="/categories/Lab/" class="post-cats__link button">Lab</a><a href="/categories/Lab/Basic/" class="post-cats__link button">Basic</a><a href="/categories/Machine-Learning/" class="post-cats__link button">Machine Learning</a><a href="/tags/Machine-Learning/" class="post-tags__link button"># Machine Learning</a><a href="/tags/NLP/" class="post-tags__link button"># NLP</a><a href="/tags/Pre-Trained-Model/" class="post-tags__link button"># Pre-Trained Model</a></div> 
 </article>
 
 
     <div class="nav">
         <div class="nav__prev">
             
-                <a href="/2021/03/04/VHDL%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/" class="nav__link">
-                    <div>
-                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
-                    </div>
-                    <div>
-                        <div class="nav__label">
-                            Previous Post
-                        </div>
-                        <div class="nav__title">
-                            VHDL语言入门笔记
-                        </div>
-                    </div>
-                </a>
-            
         </div>
         <div class="nav__next">
             
-                <a href="/2021/01/27/%E5%87%B8%E5%87%BD%E6%95%B0/" class="nav__link">
+                <a href="/2021/06/20/%E5%87%B8%E9%9B%86/" class="nav__link">
                     <div>
                         <div class="nav__label">
                             Next Post
                         </div>
                         <div class="nav__title">
-                            凸函数
+                            凸集
                         </div>
                     </div>
                     <div>
